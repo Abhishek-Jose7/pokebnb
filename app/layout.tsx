@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
 const display = localFont({
@@ -8,8 +9,8 @@ const display = localFont({
   display: "swap",
 });
 
-const body = localFont({
-  src: "../public/Pokemon Hollow.ttf",
+const body = Inter({
+  subsets: ["latin"],
   variable: "--font-body",
   display: "swap",
 });
@@ -33,7 +34,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${display.variable} ${body.variable} antialiased`}>
+      <body className={`${display.variable} ${body.variable} font-sans antialiased`}>
         {children}
       </body>
     </html>

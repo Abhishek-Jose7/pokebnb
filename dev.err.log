@@ -1,2 +1,33 @@
 <w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (101kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
 <w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (231kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+ ⨯ ./components/landing/CutscenePreloader.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+    ,-[[36;1;4mC:\pokemon\components\landing\CutscenePreloader.tsx[0m:21:1]
+ [2m21[0m |   if (phase === "done") return null;
+ [2m22[0m | 
+ [2m23[0m |   return (
+ [2m24[0m |     <div
+    : [31;1m     ^^^[0m
+ [2m25[0m |       aria-hidden="true"
+ [2m26[0m |       className={`fixed inset-0 z-50 grid place-items-center transition-opacity duration-300 ${phase === "flash" ? "bg-white" : "bg-black"}`}
+ [2m27[0m |     >
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/landing/CutscenePreloader.tsx
+./app/page.tsx
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\pokemon\.next\cache\webpack\client-development\5.pack.gz_' -> 'C:\pokemon\.next\cache\webpack\client-development\5.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Restoring pack from C:\pokemon\.next\cache\webpack\server-development.pack.gz failed: TypeError: Cannot read properties of undefined (reading 'hasStartTime')
+<w> [webpack.cache.PackFileCacheStrategy] Restoring pack from C:\pokemon\.next\cache\webpack\client-development.pack.gz failed: TypeError: Cannot read properties of undefined (reading 'hasStartTime')
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\pokemon\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\pokemon\.next\cache\webpack\client-development\0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: EPERM: operation not permitted, rename 'C:\pokemon\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\pokemon\.next\cache\webpack\client-development\0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\pokemon\.next\cache\webpack\server-development\0.pack.gz_' -> 'C:\pokemon\.next\cache\webpack\server-development\0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\pokemon\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\pokemon\.next\cache\webpack\client-development\0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\pokemon\.next\cache\webpack\server-development\0.pack.gz_' -> 'C:\pokemon\.next\cache\webpack\server-development\0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\pokemon\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\pokemon\.next\cache\webpack\client-development\0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\pokemon\.next\cache\webpack\server-development\0.pack.gz_' -> 'C:\pokemon\.next\cache\webpack\server-development\0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\pokemon\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\pokemon\.next\cache\webpack\client-development\0.pack.gz'

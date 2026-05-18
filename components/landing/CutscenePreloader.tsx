@@ -8,7 +8,10 @@ export function CutscenePreloader() {
 
   useEffect(() => {
     if (phase !== "flash") return;
-    const flash = window.setTimeout(() => setPhase("done"), 620);
+    const flash = window.setTimeout(() => {
+      setPhase("done");
+      window.dispatchEvent(new Event("preloader-done"));
+    }, 620);
     return () => window.clearTimeout(flash);
   }, [phase]);
 
@@ -27,9 +30,10 @@ export function CutscenePreloader() {
     >
       {phase === "intro" ? (
         <>
+        <div className="flex h-full w-full items-center justify-center bg-black">
           <video
             ref={videoRef}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-contain"
             src="/bitnbuild-cutscene.mp4"
             muted
             playsInline
@@ -38,6 +42,7 @@ export function CutscenePreloader() {
             onEnded={() => setPhase("flash")}
             onError={() => setPhase("flash")}
           />
+        </div>
           <button
             className="absolute bottom-6 right-6 rounded-md border border-white/30 bg-black/60 px-5 py-3 text-lg font-bold text-white backdrop-blur"
             onClick={() => setPhase("flash")}

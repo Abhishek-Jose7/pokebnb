@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const npcs = [
   {
     name: "PROF. BYTE",
     role: "About BitnBuild",
-    position: "left-[12%] top-[22%]",
-    color: "bg-poke-yellow text-slate-950",
+    position: "left-[15%] top-[25%]",
+    align: "left",
     lines: [
       "BitnBuild is CRCE's flagship hackathon where builders create innovative projects within limited time constraints.",
       "This edition is a 24-hour global hackathon in Mumbai focused on creativity, execution, and demo-ready ideas.",
@@ -16,8 +16,8 @@ const npcs = [
   {
     name: "SHOPKEEPER",
     role: "Registration",
-    position: "left-[42%] top-[18%]",
-    color: "bg-green-400 text-slate-950",
+    position: "left-[25%] top-[50%]",
+    align: "left",
     lines: [
       "Register from the main desk, keep your team details ready, and watch official announcements for slot updates.",
       "Teams should pick a starter domain before the build sprint begins.",
@@ -26,8 +26,8 @@ const npcs = [
   {
     name: "ENGINEER",
     role: "Tech Stack",
-    position: "right-[13%] top-[25%]",
-    color: "bg-sky-400 text-slate-950",
+    position: "right-[15%] top-[25%]",
+    align: "right",
     lines: [
       "Bring whatever stack helps you build fastest: web, app, AI/ML, blockchain, hardware prototypes, or hybrid tools.",
       "Judges care about clarity, execution, impact, and how confidently you can demo the result.",
@@ -36,8 +36,8 @@ const npcs = [
   {
     name: "NURSE NODE",
     role: "Rules & Support",
-    position: "left-[24%] bottom-[22%]",
-    color: "bg-pink-300 text-slate-950",
+    position: "left-1/2 top-[28%] -translate-x-1/2",
+    align: "center",
     lines: [
       "Need help? Visit the support counter for schedule, food, room, or mentor guidance.",
       "Respect teams, use permitted resources, and keep submissions original.",
@@ -46,8 +46,8 @@ const npcs = [
   {
     name: "GUARD",
     role: "Eligibility",
-    position: "right-[28%] bottom-[20%]",
-    color: "bg-slate-800 text-white",
+    position: "left-1/2 top-[55%] -translate-x-1/2",
+    align: "center",
     lines: [
       "Students, developers, designers, and innovators can enter if they follow team and event guidelines.",
       "Carry your ID and use your dashboard QR wherever check-in is required.",
@@ -56,8 +56,8 @@ const npcs = [
   {
     name: "RIVAL",
     role: "Prizes",
-    position: "right-[8%] bottom-[42%]",
-    color: "bg-orange-400 text-slate-950",
+    position: "right-[25%] top-[58%]",
+    align: "right",
     lines: [
       "Prizes go to teams that combine strong ideas with working execution and a crisp pitch.",
       "Track awards, sponsor awards, and special mentions may unlock along the way.",
@@ -65,10 +65,26 @@ const npcs = [
   },
 ];
 
+function TypewriterText({ text }: { text: string }) {
+  const [displayed, setDisplayed] = useState("");
+
+  useEffect(() => {
+    setDisplayed("");
+    let i = 0;
+    const interval = setInterval(() => {
+      setDisplayed(text.slice(0, i + 1));
+      i++;
+      if (i > text.length) clearInterval(interval);
+    }, 25);
+    return () => clearInterval(interval);
+  }, [text]);
+
+  return <span>{displayed}</span>;
+}
+
 export function PokemonCenterFAQ() {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState<number | null>(null);
   const [line, setLine] = useState(0);
-  const npc = npcs[active];
 
   function choose(index: number) {
     setActive(index);
@@ -76,42 +92,88 @@ export function PokemonCenterFAQ() {
   }
 
   function nextLine() {
-    setLine((value) => (value + 1) % npc.lines.length);
+    if (active === null) return;
+    setLine((value) => (value + 1) % npcs[active].lines.length);
   }
 
   return (
-    <section id="faq" className="bg-[#101b27] px-4 py-28 sm:px-6">
-      <div className="mx-auto max-w-7xl">
-        <p className="font-mono text-xl uppercase tracking-[0.24em] text-poke-yellow">FAQ</p>
-        <h2 className="mt-3 font-display text-4xl leading-tight text-white lg:text-5xl">Talk To The NPCs.</h2>
-        <p className="mt-5 max-w-3xl text-2xl leading-9 text-slate-300">Walk into the Pokemon Center help desk. Each counter answers a different part of the event.</p>
+    <section id="faq" className="bg-[#101b27] px-4 pt-40 pb-28 sm:px-6">
+      <div className="mx-auto max-w-5xl">
+        <div className="mb-10 text-center">
+          <p className="font-mono text-xl uppercase tracking-[0.24em] text-poke-yellow">FAQ</p>
+          <h2 className="mt-3 font-display text-4xl leading-tight text-white lg:text-5xl">Talk To The NPCs.</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-xl leading-8 text-slate-300">Click on any character in the Pokémon Center to ask questions about the hackathon.</p>
+        </div>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-[1fr_.55fr]">
-          <div className="relative min-h-[640px] overflow-hidden rounded-lg border-4 border-poke-black bg-[#f7e8c7] p-5 shadow-2xl">
-            <div className="absolute inset-x-0 top-0 h-24 bg-poke-red" />
-            <div className="absolute left-1/2 top-14 h-16 w-72 -translate-x-1/2 rounded-b-full border-4 border-poke-black bg-white" />
-            <div className="absolute left-1/2 top-20 h-10 w-10 -translate-x-1/2 rounded-full border-4 border-poke-black bg-white" />
-            <div className="absolute inset-x-10 bottom-10 top-32 rounded-lg bg-[linear-gradient(45deg,#d9c08f_25%,transparent_25%),linear-gradient(-45deg,#d9c08f_25%,transparent_25%),linear-gradient(45deg,transparent_75%,#d9c08f_75%),linear-gradient(-45deg,transparent_75%,#d9c08f_75%)] bg-[length:32px_32px] bg-[position:0_0,0_16px,16px_-16px,-16px_0px]" />
-            {npcs.map((person, index) => (
-              <button
-                key={person.name}
-                type="button"
-                onClick={() => choose(index)}
-                className={`absolute z-10 min-h-16 rounded-md border-4 border-poke-black px-4 py-2 text-left text-sm font-black shadow-lg transition hover:scale-105 ${person.position} ${person.color} ${active === index ? "ring-4 ring-poke-yellow" : ""}`}
-              >
-                <span className="block text-lg">{person.name}</span>
-                <span className="block text-xs">{person.role}</span>
-              </button>
-            ))}
-          </div>
+        <div className="relative mx-auto h-[500px] w-full max-w-4xl overflow-hidden rounded-lg border-4 border-poke-black shadow-[0_20px_50px_rgba(0,0,0,0.5)] md:h-[600px]">
+          {/* Background image with evening lighting overlay */}
+          <div className="absolute inset-0 bg-[url('/faq.jpg')] bg-cover bg-center" />
+          <div className="absolute inset-0 bg-black/40 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-[#ffaa00]/10 mix-blend-color-burn" />
 
-          <aside className="self-end rounded-lg border-4 border-poke-black bg-white p-5 text-slate-950 shadow-2xl">
-            <p className="font-mono text-2xl text-poke-red">{npc.name}:</p>
-            <p className="mt-4 min-h-40 text-3xl font-black leading-10">{npc.lines[line]}</p>
-            <button type="button" onClick={nextLine} className="mt-5 min-h-14 rounded-md bg-poke-yellow px-6 text-xl font-black text-slate-950">
-              Next
-            </button>
-          </aside>
+          {/* NPCs and Dialogue Bubbles */}
+          {npcs.map((person, index) => {
+            // Determine vertical placement based on character's top %
+            const isHigh = parseInt(person.position.match(/top-\[(\d+)%\]/)?.[1] || "50") < 30;
+            const bubblePosition = isHigh ? "top-full mt-2" : "bottom-full mb-2";
+
+            const pointerClass = isHigh
+              ? "absolute -top-[10px] left-1/2 -translate-x-1/2 border-b-[10px] border-l-[10px] border-r-[10px] border-b-poke-black border-l-transparent border-r-transparent"
+              : "absolute -bottom-[10px] left-1/2 -translate-x-1/2 border-t-[10px] border-l-[10px] border-r-[10px] border-t-poke-black border-l-transparent border-r-transparent";
+
+            const pointerInnerClass = isHigh
+              ? "absolute -left-[6px] -bottom-[11px] border-b-[6px] border-l-[6px] border-r-[6px] border-b-[#f8f5eb] border-l-transparent border-r-transparent"
+              : "absolute -left-[6px] -top-[11px] border-t-[6px] border-l-[6px] border-r-[6px] border-t-[#f8f5eb] border-l-transparent border-r-transparent";
+
+            return (
+              <div key={person.name} className={`absolute z-10 flex flex-col items-center justify-start ${person.position}`}>
+                {/* Dialogue Bubble */}
+                {active === index && (
+                  <div className={`absolute z-20 w-64 md:w-80 left-1/2 -translate-x-1/2 ${bubblePosition}`}>
+                    <div className="relative flex flex-col rounded-md border-[3px] border-poke-black bg-[#f8f5eb] p-3 shadow-lg md:p-4">
+                      <p className="font-mono text-xs font-bold tracking-widest text-poke-red md:text-sm">
+                        {person.name}
+                      </p>
+                      <div className="mt-1 min-h-[60px] font-sans text-sm leading-relaxed text-slate-900 md:text-base">
+                        <TypewriterText text={person.lines[line]} />
+                      </div>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          nextLine();
+                        }}
+                        className="mt-3 self-end rounded-sm border-2 border-poke-black bg-poke-red px-3 py-1 font-mono text-[10px] font-black text-white transition hover:bg-red-700 md:text-xs"
+                      >
+                        NEXT ▼
+                      </button>
+                      
+                      {/* Speech bubble pointer */}
+                      <div className={pointerClass}>
+                        <div className={pointerInnerClass} />
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Clickable NPC Hitbox */}
+                <button
+                  type="button"
+                  onClick={() => choose(index)}
+                  className="group flex h-24 w-20 cursor-pointer flex-col items-center justify-start transition-transform hover:-translate-y-2"
+                  aria-label={`Talk to ${person.name}`}
+                >
+                  {active !== index && (
+                    <div className="opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                      <div className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-poke-black bg-white font-display text-sm text-poke-red shadow-lg md:h-8 md:w-8 md:text-lg">
+                        ?
+                      </div>
+                    </div>
+                  )}
+                </button>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

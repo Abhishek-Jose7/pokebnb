@@ -1,16 +1,21 @@
 INSERT INTO auth.users (id, instance_id, aud, role, email, encrypted_password, email_confirmed_at, created_at, updated_at, raw_app_meta_data, raw_user_meta_data)
 VALUES
-  ('00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'admin@bitnbuild.com', crypt('Admin@1234', gen_salt('bf')), NOW(), NOW(), NOW(), '{"provider":"email","providers":["email"]}', '{}'),
-  ('00000000-0000-0000-0000-000000000011', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'judge1@bitnbuild.com', crypt('Judge@1234', gen_salt('bf')), NOW(), NOW(), NOW(), '{"provider":"email","providers":["email"]}', '{}'),
-  ('00000000-0000-0000-0000-000000000012', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'judge2@bitnbuild.com', crypt('Judge@1234', gen_salt('bf')), NOW(), NOW(), NOW(), '{"provider":"email","providers":["email"]}', '{}'),
-  ('00000000-0000-0000-0000-000000000013', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'judge3@bitnbuild.com', crypt('Judge@1234', gen_salt('bf')), NOW(), NOW(), NOW(), '{"provider":"email","providers":["email"]}', '{}'),
-  ('00000000-0000-0000-0000-000000000021', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'mentor1@bitnbuild.com', crypt('Mentor@1234', gen_salt('bf')), NOW(), NOW(), NOW(), '{"provider":"email","providers":["email"]}', '{}'),
-  ('00000000-0000-0000-0000-000000000022', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'mentor2@bitnbuild.com', crypt('Mentor@1234', gen_salt('bf')), NOW(), NOW(), NOW(), '{"provider":"email","providers":["email"]}', '{}')
+  ('00000000-0000-4000-8000-000000000001', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'admin@bitnbuild.com', crypt('Admin@1234', gen_salt('bf')), NOW(), NOW(), NOW(), '{"provider":"email","providers":["email"]}', '{}'),
+  ('00000000-0000-4000-8000-000000000011', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'judge1@bitnbuild.com', crypt('Judge@1234', gen_salt('bf')), NOW(), NOW(), NOW(), '{"provider":"email","providers":["email"]}', '{}'),
+  ('00000000-0000-4000-8000-000000000012', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'judge2@bitnbuild.com', crypt('Judge@1234', gen_salt('bf')), NOW(), NOW(), NOW(), '{"provider":"email","providers":["email"]}', '{}'),
+  ('00000000-0000-4000-8000-000000000013', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'judge3@bitnbuild.com', crypt('Judge@1234', gen_salt('bf')), NOW(), NOW(), NOW(), '{"provider":"email","providers":["email"]}', '{}'),
+  ('00000000-0000-4000-8000-000000000021', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'mentor1@bitnbuild.com', crypt('Mentor@1234', gen_salt('bf')), NOW(), NOW(), NOW(), '{"provider":"email","providers":["email"]}', '{}'),
+  ('00000000-0000-4000-8000-000000000022', '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'mentor2@bitnbuild.com', crypt('Mentor@1234', gen_salt('bf')), NOW(), NOW(), NOW(), '{"provider":"email","providers":["email"]}', '{}')
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO auth.users (id, instance_id, aud, role, email, encrypted_password, email_confirmed_at, created_at, updated_at, raw_app_meta_data, raw_user_meta_data)
 SELECT gen_random_uuid(), '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated', 'trainer' || gs || '@bitnbuild.com', crypt('Trainer@1234', gen_salt('bf')), NOW(), NOW(), NOW(), '{"provider":"email","providers":["email"]}', '{}'
 FROM generate_series(1, 10) gs
+ON CONFLICT DO NOTHING;
+
+INSERT INTO auth.identities (id, user_id, provider_id, identity_data, provider, last_sign_in_at, created_at, updated_at)
+SELECT gen_random_uuid(), id, id::text, jsonb_build_object('sub', id::text, 'email', email), 'email', NOW(), NOW(), NOW()
+FROM auth.users
 ON CONFLICT DO NOTHING;
 
 INSERT INTO problem_statements (id, title, description, domain, difficulty, pdf_url) VALUES
@@ -22,24 +27,24 @@ INSERT INTO problem_statements (id, title, description, domain, difficulty, pdf_
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO teams (id, name, team_code, domain) VALUES
-  ('20000000-0000-0000-0000-000000000001', 'Pikachu Pack', 'TEAM-001', 'AI/ML'),
-  ('20000000-0000-0000-0000-000000000002', 'Squirtle Squad', 'TEAM-002', 'Web3'),
-  ('20000000-0000-0000-0000-000000000003', 'Bulba Builders', 'TEAM-003', 'HealthTech')
+  ('20000000-0000-4000-8000-000000000001', 'Pikachu Pack', 'TEAM-001', 'AI/ML'),
+  ('20000000-0000-4000-8000-000000000002', 'Squirtle Squad', 'TEAM-002', 'Web3'),
+  ('20000000-0000-4000-8000-000000000003', 'Bulba Builders', 'TEAM-003', 'HealthTech')
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO profiles (id, email, full_name, role, trainer_id, pokemon_sprite, team_id, qr_token) VALUES
-  ('00000000-0000-0000-0000-000000000001', 'admin@bitnbuild.com', 'Professor Oak', 'admin', 'TRN-0001', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png', NULL, gen_random_uuid()::text),
-  ('00000000-0000-0000-0000-000000000011', 'judge1@bitnbuild.com', 'Brock Stone', 'judge', 'TRN-0011', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/95.png', NULL, gen_random_uuid()::text),
-  ('00000000-0000-0000-0000-000000000012', 'judge2@bitnbuild.com', 'Misty Wave', 'judge', 'TRN-0012', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/121.png', NULL, gen_random_uuid()::text),
-  ('00000000-0000-0000-0000-000000000013', 'judge3@bitnbuild.com', 'Lt Surge Bolt', 'judge', 'TRN-0013', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/26.png', NULL, gen_random_uuid()::text),
-  ('00000000-0000-0000-0000-000000000021', 'mentor1@bitnbuild.com', 'Nurse Joy', 'mentor', 'TRN-0021', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/113.png', NULL, gen_random_uuid()::text),
-  ('00000000-0000-0000-0000-000000000022', 'mentor2@bitnbuild.com', 'Bill Storage', 'mentor', 'TRN-0022', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/137.png', NULL, gen_random_uuid()::text)
+  ('00000000-0000-4000-8000-000000000001', 'admin@bitnbuild.com', 'Professor Oak', 'admin', 'TRN-0001', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png', NULL, gen_random_uuid()::text),
+  ('00000000-0000-4000-8000-000000000011', 'judge1@bitnbuild.com', 'Brock Stone', 'judge', 'TRN-0011', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/95.png', NULL, gen_random_uuid()::text),
+  ('00000000-0000-4000-8000-000000000012', 'judge2@bitnbuild.com', 'Misty Wave', 'judge', 'TRN-0012', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/121.png', NULL, gen_random_uuid()::text),
+  ('00000000-0000-4000-8000-000000000013', 'judge3@bitnbuild.com', 'Lt Surge Bolt', 'judge', 'TRN-0013', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/26.png', NULL, gen_random_uuid()::text),
+  ('00000000-0000-4000-8000-000000000021', 'mentor1@bitnbuild.com', 'Nurse Joy', 'mentor', 'TRN-0021', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/113.png', NULL, gen_random_uuid()::text),
+  ('00000000-0000-4000-8000-000000000022', 'mentor2@bitnbuild.com', 'Bill Storage', 'mentor', 'TRN-0022', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/137.png', NULL, gen_random_uuid()::text)
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO profiles (id, email, full_name, role, trainer_id, pokemon_sprite, team_id, qr_token)
 SELECT id, email, 'Trainer ' || row_number() OVER (ORDER BY email), 'participant', 'TRN-' || lpad((30 + row_number() OVER (ORDER BY email))::text, 4, '0'),
   'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' || (ARRAY[1,4,7,25,39,54,133,143,149,151])[row_number() OVER (ORDER BY email)] || '.png',
-  (ARRAY['20000000-0000-0000-0000-000000000001'::uuid,'20000000-0000-0000-0000-000000000001'::uuid,'20000000-0000-0000-0000-000000000001'::uuid,'20000000-0000-0000-0000-000000000002'::uuid,'20000000-0000-0000-0000-000000000002'::uuid,'20000000-0000-0000-0000-000000000002'::uuid,'20000000-0000-0000-0000-000000000003'::uuid,'20000000-0000-0000-0000-000000000003'::uuid,'20000000-0000-0000-0000-000000000003'::uuid,'20000000-0000-0000-0000-000000000003'::uuid])[row_number() OVER (ORDER BY email)],
+  (ARRAY['20000000-0000-4000-8000-000000000001'::uuid,'20000000-0000-4000-8000-000000000001'::uuid,'20000000-0000-4000-8000-000000000001'::uuid,'20000000-0000-4000-8000-000000000002'::uuid,'20000000-0000-4000-8000-000000000002'::uuid,'20000000-0000-4000-8000-000000000002'::uuid,'20000000-0000-4000-8000-000000000003'::uuid,'20000000-0000-4000-8000-000000000003'::uuid,'20000000-0000-4000-8000-000000000003'::uuid,'20000000-0000-4000-8000-000000000003'::uuid])[row_number() OVER (ORDER BY email)],
   gen_random_uuid()::text
 FROM auth.users
 WHERE email LIKE 'trainer%@bitnbuild.com'
@@ -64,6 +69,6 @@ INSERT INTO rooms (name, capacity, location, domain) VALUES
 ON CONFLICT DO NOTHING;
 
 INSERT INTO announcements (title, body, target_role, created_by) VALUES
-  ('Welcome to BITNBUILD', 'Check in, meet your team, and prepare for Gym Battle 1.', 'all', '00000000-0000-0000-0000-000000000001'),
-  ('Judges Briefing', 'Gym Leaders, please review the scoring criteria before your first slot.', 'judge', '00000000-0000-0000-0000-000000000001'),
-  ('Problem Statement Window Open', 'Team leaders can now select one Gym Badge challenge.', 'participant', '00000000-0000-0000-0000-000000000001');
+  ('Welcome to BITNBUILD', 'Check in, meet your team, and prepare for Gym Battle 1.', 'all', '00000000-0000-4000-8000-000000000001'),
+  ('Judges Briefing', 'Gym Leaders, please review the scoring criteria before your first slot.', 'judge', '00000000-0000-4000-8000-000000000001'),
+  ('Problem Statement Window Open', 'Team leaders can now select one Gym Badge challenge.', 'participant', '00000000-0000-4000-8000-000000000001');
