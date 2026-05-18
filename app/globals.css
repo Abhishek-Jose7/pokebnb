@@ -3,25 +3,78 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --poke-red: #cc0000;
+  --poke-red-light: #ff0000;
+  --poke-yellow: #ffcb05;
+  --poke-blue: #003a70;
+  --poke-blue-light: #3b4cca;
+  --poke-white: #ffffff;
+  --poke-black: #2d2d2d;
+  --poke-gray: #a8a8a8;
+  --poke-green: #3d7d3f;
+  --poke-pokeball-top: #cc0000;
+  --poke-pokeball-bottom: #ffffff;
+  --poke-pokeball-ring: #2d2d2d;
+  --bg-primary: #0f1923;
+  --bg-secondary: #1a2a3a;
+  --bg-card: #1e3245;
+  --text-primary: #ffffff;
+  --text-secondary: #ffcb05;
+  --accent: #ff6b6b;
+  --border: #2a4a6a;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.light {
+  --bg-primary: #fff8e5;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --text-primary: #172033;
+  --border: #d8e1ef;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  color: var(--text-primary);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 203, 5, 0.12), transparent 28rem),
+    linear-gradient(135deg, var(--bg-primary), #07111b 70%);
+  font-family: var(--font-body), system-ui, sans-serif;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .pixel-border {
+    box-shadow:
+      0 0 0 2px var(--poke-black),
+      0 0 0 5px var(--poke-yellow),
+      0 0 0 7px var(--poke-black);
+  }
+
+  .holo-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .holo-card::after {
+    content: "";
+    position: absolute;
+    inset: -60%;
+    background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.18), transparent 65%);
+    transform: translateX(-60%) rotate(12deg);
+    transition: transform 600ms ease;
+    pointer-events: none;
+  }
+
+  .holo-card:hover::after {
+    transform: translateX(60%) rotate(12deg);
+  }
+
+  .pokeball-button {
+    background: linear-gradient(to bottom, var(--poke-red) 0 48%, var(--poke-black) 48% 54%, white 54% 100%);
+    color: white;
+    text-shadow: 0 1px 0 #000;
   }
 }
