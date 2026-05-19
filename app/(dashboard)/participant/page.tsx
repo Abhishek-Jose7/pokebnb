@@ -1,5 +1,3 @@
-import Link from "next/link";
-import { PokemonCard } from "@/components/pokemon/PokemonCard";
 import HackathonPage from "@/components/pokemon/hackathonpage";
 import { createClient } from "@/lib/supabase/server";
 
@@ -16,7 +14,7 @@ export default async function ParticipantHomePage() {
   ]);
   if (!profile) return null;
   return (
-    <div className="grid gap-5">
+    <div className="mx-auto grid max-w-7xl gap-5">
       <HackathonPage
         trainer={{
           name: profile.full_name,
@@ -41,8 +39,6 @@ export default async function ParticipantHomePage() {
         }] : []}
         announcements={(announcements ?? []).map((item) => ({ title: item.title, body: item.body }))}
       />
-      <PokemonCard title="Latest League Broadcasts">{(announcements ?? []).map((item) => <Link href="/participant/announcements" key={item.id} className="mb-3 block rounded-md bg-slate-950/30 p-4"><span className="font-bold text-poke-yellow">{item.title}</span><p className="line-clamp-2 text-sm text-slate-300">{item.body}</p></Link>)}</PokemonCard>
-      <div className="grid gap-5 md:grid-cols-2"><PokemonCard title="Current Round"><p>{round?.name ?? "No active Gym Battle"}</p></PokemonCard><PokemonCard title="Next Slot"><p>{allocation?.scheduled_time ? new Date(allocation.scheduled_time).toLocaleString() : "Not published yet"}</p></PokemonCard></div>
     </div>
   );
 }

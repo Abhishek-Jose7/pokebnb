@@ -1,48 +1,63 @@
+import Image from "next/image";
+
 const routeStops = [
-  ["Route 01", "Registrations Open", "Teams enter the map, claim their slot, and get ready for the first checkpoint."],
-  ["Route 02", "Starter Domain Selection", "Choose Web/App Dev, Blockchain, or AI/ML and prepare your problem path."],
-  ["Route 03", "Opening Cutscene", "The event begins with the main briefing, rules, and team setup."],
-  ["Route 04", "Build Sprint", "Move through forests, lakes, bridges, and towns while mentors help unblock builds."],
-  ["Route 05", "Gym Battle Reviews", "Judges visit teams, score progress, and unlock leaderboard movement."],
-  ["Route 06", "Final Town", "Pitches, demos, prizes, and the champion reveal."],
+  ["01", "Registrations", "Teams enter the route and lock their slot.", "May 20"],
+  ["02", "Starter Pick", "Select Web/App, Blockchain, or AI/ML.", "May 22"],
+  ["03", "Opening", "Briefing, rules, and the build clock starts.", "May 25"],
+  ["04", "Build Sprint", "Mentors, checkpoints, and overnight execution.", "24 hrs"],
+  ["05", "Gym Reviews", "Judges inspect demos and score the rounds.", "Final day"],
+  ["06", "Champion", "Final pitch, awards, and leaderboard reveal.", "Finale"],
 ];
 
 export function RouteTimeline() {
   return (
-    <section id="timeline" className="relative bg-[#fff7db] px-4 py-28 text-slate-950 sm:px-6">
-      <div className="mx-auto max-w-7xl">
-        <div className="sticky top-5 z-10 mb-12 inline-block rounded-lg border-4 border-poke-black bg-white px-5 py-4 shadow-lg">
-          <p className="font-mono text-xl uppercase tracking-[0.24em] text-poke-red">Timeline</p>
-          <h2 className="mt-2 font-display text-4xl leading-tight text-poke-blue lg:text-5xl">A Route Through BITNBUILD.</h2>
+    <section id="timeline" className="relative overflow-hidden bg-[#081f20] px-4 py-28 text-white sm:px-6">
+      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#0f2318] to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0e1722] to-transparent" />
+      <div className="absolute left-[-10%] top-20 h-72 w-72 rounded-full bg-emerald-400/10 blur-3xl" />
+      <div className="absolute right-[-8%] bottom-20 h-80 w-80 rounded-full bg-sky-300/10 blur-3xl" />
+
+      <div className="relative mx-auto max-w-7xl">
+        <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+          <div>
+            <p className="font-mono text-xl uppercase tracking-[0.24em] text-poke-yellow">Timeline</p>
+            <h2 className="mt-4 font-display text-5xl leading-tight lg:text-7xl">Route Map.</h2>
+          </div>
+          <p className="max-w-3xl text-2xl leading-9 text-cyan-50/80">
+            Not a plain schedule: follow the trainer route from sign-up to champion reveal, with each checkpoint acting like a new map area.
+          </p>
         </div>
 
-        <div className="relative mx-auto min-h-[1180px] max-w-5xl">
-          <div className="absolute left-1/2 top-0 h-full w-8 -translate-x-1/2 rounded-full bg-[repeating-linear-gradient(to_bottom,#7a5230_0_22px,#5b3a20_22px_34px)] shadow-inner" />
-          <div className="absolute left-[12%] top-12 h-28 w-28 rounded-sm bg-green-700 shadow-[42px_28px_0_#166534,82px_-8px_0_#15803d]" />
-          <div className="absolute right-[10%] top-[22%] h-36 w-44 rounded-[45%] bg-sky-300/80 shadow-[0_0_0_10px_#38bdf8]" />
-          <div className="absolute left-[8%] top-[48%] h-10 w-64 rotate-[-8deg] rounded bg-[#8b5a2b] shadow-[0_12px_0_#5b3a20]" />
-          <div className="absolute right-[9%] bottom-[15%] grid grid-cols-3 gap-2">
-            {Array.from({ length: 9 }).map((_, index) => <span key={index} className="h-10 w-10 rounded-sm bg-[#cc0000] shadow-[inset_0_-8px_0_rgba(0,0,0,.25)]" />)}
-          </div>
+        <div className="relative mt-16">
+          <div className="absolute left-6 right-6 top-1/2 hidden h-1 -translate-y-1/2 bg-gradient-to-r from-poke-yellow via-white to-poke-red lg:block" />
+          <div className="absolute left-1/2 top-0 h-full w-1 -translate-x-1/2 bg-gradient-to-b from-poke-yellow via-white to-poke-red lg:hidden" />
 
-          {routeStops.map(([route, event, details], index) => {
-            const left = index % 2 === 0;
-            return (
+          <div className="grid gap-6 lg:grid-cols-6">
+            {routeStops.map(([number, title, detail, date], index) => (
               <article
-                key={route}
-                className={`relative z-10 mb-14 grid items-center gap-5 md:grid-cols-[1fr_7rem_1fr] ${left ? "" : "md:[&>*:first-child]:col-start-3"}`}
+                key={number}
+                className={`relative rounded-[1.4rem] border border-white/15 bg-white/[0.07] p-5 shadow-[0_18px_45px_rgba(0,0,0,.35)] backdrop-blur-md transition hover:-translate-y-2 hover:bg-white/[0.1] ${
+                  index % 2 ? "lg:mt-24" : "lg:mb-24"
+                }`}
               >
-                <div className={`rounded-lg border-4 border-poke-black bg-white p-5 shadow-lg ${left ? "md:col-start-1" : "md:col-start-3"}`}>
-                  <p className="font-mono text-2xl text-poke-red">{route}</p>
-                  <h3 className="mt-2 text-3xl font-black text-poke-blue">{event}</h3>
-                  <p className="mt-3 text-xl leading-8 text-slate-700">{details}</p>
+                <div className="absolute -top-6 left-5 grid h-12 w-12 place-items-center rounded-full border-4 border-[#081f20] bg-poke-yellow font-mono text-xl font-black text-slate-950 shadow-xl">
+                  {number}
                 </div>
-                <div className="mx-auto grid h-20 w-20 place-items-center rounded-full border-4 border-poke-black bg-poke-yellow font-mono text-2xl text-slate-950 md:col-start-2">
-                  {String(index + 1).padStart(2, "0")}
+                <div className="pt-7">
+                  <p className="font-mono text-xs uppercase tracking-[0.2em] text-poke-yellow">{date}</p>
+                  <h3 className="mt-3 text-2xl font-black leading-tight text-white">{title}</h3>
+                  <p className="mt-3 text-base leading-7 text-cyan-50/75">{detail}</p>
                 </div>
+                <Image
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${[25, 1, 4, 7, 94, 150][index]}.png`}
+                  alt=""
+                  width={82}
+                  height={82}
+                  className="absolute -bottom-5 -right-3 h-16 w-16 object-contain opacity-90 drop-shadow-xl"
+                />
               </article>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </div>
     </section>

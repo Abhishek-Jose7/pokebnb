@@ -77,6 +77,18 @@ export default function HomePage() {
       <main className="overflow-hidden text-xl sm:text-2xl">
       <LandingHero />
 
+      {/* Transition image between hero and about */}
+      <div className="w-full overflow-hidden block">
+        <Image
+          src="/merge.jpg"
+          alt="Route Transition"
+          width={1920}
+          height={600}
+          className="w-full h-auto object-contain block"
+          priority
+        />
+      </div>
+
         <section id="about" className="relative bg-[url('/oakbg.jpg')] bg-cover bg-center px-4 pt-32 pb-40 text-slate-950 sm:px-6">
           {/* Blend Gradient into next section */}
           <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-[#0f2318]" />
@@ -142,22 +154,54 @@ export default function HomePage() {
 
         <RouteTimeline />
 
-        <section id="prizes" className="bg-[#0e1722] px-4 py-28 sm:px-6">
-          <div className="mx-auto max-w-5xl">
+        <section id="prizes" className="relative overflow-hidden bg-[#0e1722] px-4 py-28 sm:px-6">
+          <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#fff7db] to-transparent opacity-80" />
+          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white to-transparent opacity-95" />
+          <Image
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/149.png"
+            alt=""
+            width={360}
+            height={360}
+            className="pointer-events-none absolute -right-20 top-20 h-52 w-52 rotate-6 object-contain opacity-35 blur-[1px] sm:h-72 sm:w-72 lg:right-4 lg:opacity-55 lg:blur-0"
+          />
+          <Image
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png"
+            alt=""
+            width={320}
+            height={320}
+            className="pointer-events-none absolute -left-16 top-[36%] h-48 w-48 -rotate-12 object-contain opacity-35 blur-[1px] sm:h-64 sm:w-64 lg:left-4 lg:opacity-50 lg:blur-0"
+          />
+          <Image
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/9.png"
+            alt=""
+            width={300}
+            height={300}
+            className="pointer-events-none absolute bottom-16 right-4 h-44 w-44 object-contain opacity-30 sm:h-56 sm:w-56 lg:opacity-45"
+          />
+          <div className="relative mx-auto max-w-5xl">
             <p className="text-center font-mono text-xl uppercase tracking-[0.24em] text-poke-yellow">Prizes</p>
+            <h2 className="mx-auto mt-4 max-w-3xl text-center font-display text-5xl leading-tight text-white lg:text-6xl">Champion Rewards Await.</h2>
+            <p className="mx-auto mt-5 max-w-3xl text-center text-xl leading-8 text-slate-300">Flip each reward tile to reveal the loot waiting at the end of the route.</p>
             
             {/* LEGENDARY — centered top, larger, glowing */}
             <div className="mt-10 flex justify-center">
-              <div className="group h-[540px] w-full max-w-md [perspective:1000px]">
-                <div className="relative h-full w-full rounded-2xl transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+              <div tabIndex={0} className="group h-[540px] w-full max-w-md cursor-pointer [perspective:1000px] focus:outline-none">
+                <div className="relative h-full w-full rounded-2xl transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] group-focus:[transform:rotateY(180deg)]">
+                  <Image
+                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
+                    alt=""
+                    width={120}
+                    height={120}
+                    className="absolute -right-7 -top-8 z-30 h-24 w-24 object-contain drop-shadow-xl"
+                  />
                   {/* Front */}
-                  <div className={`absolute inset-0 flex flex-col items-center justify-center rounded-2xl border-[6px] ${prizes[0].borderFront} ${prizes[0].bgFront} [backface-visibility:hidden] shadow-[0_0_60px_rgba(224,184,47,0.35)] overflow-hidden`}>
+                  <div className={`absolute inset-0 flex flex-col items-center justify-center rounded-2xl ${prizes[0].bgFront} [backface-visibility:hidden] shadow-[0_0_60px_rgba(224,184,47,0.35)] overflow-hidden`}>
                     <div className="relative h-full w-full">
                       <Image src={prizes[0].imageFront} alt={prizes[0].title} fill className="object-cover" />
                     </div>
                   </div>
                   {/* Back */}
-                  <div className={`absolute inset-0 flex flex-col items-center rounded-2xl border-[6px] ${prizes[0].borderBack} ${prizes[0].bgBack} [backface-visibility:hidden] [transform:rotateY(180deg)] shadow-xl overflow-hidden`}>
+                  <div className={`absolute inset-0 flex flex-col items-center rounded-2xl ${prizes[0].bgBack} [backface-visibility:hidden] [transform:rotateY(180deg)] shadow-xl overflow-hidden`}>
                     <div className="p-8 w-full h-full flex flex-col items-center">
                       <h3 className={`mt-4 text-center font-display text-5xl leading-tight ${prizes[0].textBack}`}>{prizes[0].title}</h3>
                       <div className="my-6 h-1 w-16 rounded-full bg-slate-300" />
@@ -178,10 +222,17 @@ export default function HomePage() {
             {/* EPIC + RARE — side by side below */}
             <div className="mt-10 grid gap-10 sm:grid-cols-2">
               {prizes.slice(1).map((prize) => (
-                <div key={prize.title} className="group h-[440px] [perspective:1000px]">
-                  <div className="relative h-full w-full rounded-2xl transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                <div key={prize.title} tabIndex={0} className="group h-[440px] cursor-pointer [perspective:1000px] focus:outline-none">
+                  <div className="relative h-full w-full rounded-2xl transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] group-focus:[transform:rotateY(180deg)]">
+                    <Image
+                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${prize.title === "Runner Up" ? 59 : 131}.png`}
+                      alt=""
+                      width={110}
+                      height={110}
+                      className="absolute -right-5 -top-7 z-30 h-20 w-20 object-contain drop-shadow-xl sm:h-24 sm:w-24"
+                    />
                     {/* Front */}
-                    <div className={`absolute inset-0 flex flex-col items-center justify-center rounded-2xl border-[6px] ${prize.borderFront} ${prize.bgFront} [backface-visibility:hidden] shadow-[0_0_30px_rgba(0,0,0,0.5)] overflow-hidden`}>
+                    <div className={`absolute inset-0 flex flex-col items-center justify-center rounded-2xl ${prize.bgFront} [backface-visibility:hidden] shadow-[0_0_30px_rgba(0,0,0,0.5)] overflow-hidden`}>
                       {prize.imageFront ? (
                         <div className="relative h-full w-full">
                           <Image src={prize.imageFront} alt={prize.title} fill className="object-cover" />
@@ -197,7 +248,7 @@ export default function HomePage() {
                       )}
                     </div>
                     {/* Back */}
-                    <div className={`absolute inset-0 flex flex-col items-center rounded-2xl border-[6px] ${prize.borderBack} ${prize.bgBack} [backface-visibility:hidden] [transform:rotateY(180deg)] shadow-xl overflow-hidden`}>
+                    <div className={`absolute inset-0 flex flex-col items-center rounded-2xl ${prize.bgBack} [backface-visibility:hidden] [transform:rotateY(180deg)] shadow-xl overflow-hidden`}>
                       <div className="p-8 w-full h-full flex flex-col items-center">
                         <h3 className={`mt-4 text-center font-display text-4xl leading-tight ${prize.textBack}`}>{prize.title}</h3>
                         <div className="my-6 h-1 w-16 rounded-full bg-slate-300" />

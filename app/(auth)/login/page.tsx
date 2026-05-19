@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -24,18 +24,40 @@ export default function LoginPage() {
   const [email, setEmail] = useState("admin@bitnbuild.com");
   const [password, setPassword] = useState("Admin@1234");
 
+  useEffect(() => {
+    const supabase = createClient();
+    const { data: subscription } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log("SUPABASE_AUTH_STATE", event, {
+        hasSession: Boolean(session),
+        userId: session?.user.id,
+        storageKey: `sb-${new URL(process.env.NEXT_PUBLIC_SUPABASE_URL ?? "http://localhost").hostname.split(".")[0]}-auth-token`,
+      });
+    });
+
+    return () => subscription.subscription.unsubscribe();
+  }, []);
+
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setLoading(true);
     const supabase = createClient();
     const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    console.log("SUPABASE_LOGIN_DATA", data);
+    console.log("SUPABASE_LOGIN_ERROR", error);
     if (error || !data.user) {
       setLoading(false);
       toast.error("A wild error appeared!", { description: error?.message ?? "Could not sign in." });
       return;
     }
+    const ensureRes = await fetch("/api/auth/ensure-profile", {
+      method: "POST",
+      headers: data.session?.access_token ? { authorization: `Bearer ${data.session.access_token}` } : {},
+    });
+    const ensureJson = (await ensureRes.json().catch(() => null)) as { role?: Role; error?: string } | null;
+    console.log("SUPABASE_ENSURE_PROFILE", ensureRes.status, ensureJson);
+
     const { data: profile } = await supabase.from("profiles").select("*").eq("id", data.user.id).maybeSingle();
-    const role = ((profile as Profile | null)?.role ?? "participant") as Role;
+    const role = ((profile as Profile | null)?.role ?? ensureJson?.role ?? "participant") as Role;
     router.push(params.get("next") ?? roleHome[role]);
     router.refresh();
   }

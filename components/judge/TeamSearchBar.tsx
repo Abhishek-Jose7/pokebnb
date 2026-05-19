@@ -22,7 +22,7 @@ export function TeamSearchBar() {
     <div className="grid gap-3">
       <Input placeholder="Search team or TEAM-042" onChange={(event) => search(event.target.value)} />
       {teams.map((team) => (
-        <Link key={team.id} className="rounded-md border border-border bg-slate-950/30 p-4 font-bold" href={`/judge/score/${team.id}`}>{team.name} <span className="font-mono text-poke-yellow">{team.team_code}</span></Link>
+        <Link key={team.id} className="rounded-md border border-border bg-slate-950/50 p-4 text-base font-bold text-white sm:text-lg" href={`/judge/team/${team.id}`}>{team.name} <span className="font-mono text-poke-yellow">{team.team_code}</span></Link>
       ))}
     </div>
   );

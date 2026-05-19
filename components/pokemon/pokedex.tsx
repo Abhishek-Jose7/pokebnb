@@ -88,7 +88,7 @@ export default function HackPokedex({
           display: flex;
           flex-direction: row;
           width: 100%;
-          max-width: 900px;
+          max-width: 1180px;
           border-radius: 24px;
           overflow: hidden;
           box-shadow:
@@ -110,7 +110,7 @@ export default function HackPokedex({
 
         /* ── LEFT PANEL (controls) ── */
         .pdx2-left {
-          width: 260px;
+          width: 300px;
           flex-shrink: 0;
           background: var(--red);
           display: flex;
@@ -353,7 +353,7 @@ export default function HackPokedex({
           display: flex;
           flex-direction: column;
           overflow: hidden;
-          min-height: 320px;
+          min-height: 430px;
         }
 
         /* scanlines overlay */
@@ -408,7 +408,7 @@ export default function HackPokedex({
           padding: 16px;
           color: var(--text-green);
           font-family: var(--font-mono);
-          font-size: 1rem;
+          font-size: 1.08rem;
           line-height: 1.6;
           overflow-y: auto;
           position: relative;

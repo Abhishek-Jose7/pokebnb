@@ -2,6 +2,8 @@
 
 import type { CSSProperties } from "react";
 import HackPokedex, { type PokedexPage } from "@/components/pokemon/pokedex";
+import { useRouter } from "next/navigation";
+import { createClient } from "@/lib/supabase/client";
 
 interface HackathonPokedexProps {
   trainer: {
@@ -56,6 +58,32 @@ function Overview({ trainer, team }: Pick<HackathonPokedexProps, "trainer" | "te
       <div style={s({ marginTop: 6, padding: "8px 10px", background: "#050f08", border: "1px solid #0f3d1c", borderRadius: 4, color: green, fontFamily: mono, fontSize: "0.9rem", lineHeight: 1.6 })}>
         BITNBUILD 2025 trainer record loaded. Use left/right, A/B, or tabs to navigate.
       </div>
+    </div>
+  );
+}
+
+function AccountActions() {
+  const router = useRouter();
+
+  async function logout() {
+    await createClient().auth.signOut();
+    router.push("/login");
+    router.refresh();
+  }
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+      <div style={{ color: yellow, fontFamily: mono, fontSize: "1.1rem", letterSpacing: "0.08em" }}>ACCOUNT</div>
+      <div style={s({ padding: "10px 12px", background: "#050f08", border: "1px solid #0f3d1c", borderRadius: 4, color: green, fontFamily: mono })}>
+        End your trainer session from inside the Pokedex.
+      </div>
+      <button
+        type="button"
+        onClick={logout}
+        style={s({ minHeight: 44, border: "2px solid #111", borderRadius: 6, background: "#facc15", color: "#111", fontFamily: mono, fontWeight: 900, cursor: "pointer" })}
+      >
+        LOG OUT
+      </button>
     </div>
   );
 }
@@ -135,10 +163,11 @@ export default function HackathonPage({ trainer, team, members, schedule, announ
     { id: "qr", label: "QR", title: "QR CODE", content: <QrData trainer={trainer} /> },
     { id: "schedule", label: "SCHED", title: "SCHEDULE", content: <ScheduleData schedule={schedule} /> },
     { id: "news", label: "NEWS", title: "BROADCASTS", content: <Broadcasts announcements={announcements} /> },
+    { id: "account", label: "EXIT", title: "ACCOUNT", content: <AccountActions /> },
   ];
 
   return (
-    <section className="flex w-full items-center justify-center py-4">
+    <section className="flex w-full items-center justify-center py-4 lg:py-8">
       <HackPokedex pages={pages} status={trainer.checkedIn ? "green" : "yellow"} eventName="BITNBUILD 2025" />
     </section>
   );

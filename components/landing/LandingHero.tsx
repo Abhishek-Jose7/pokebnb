@@ -1,14 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
 
 export function LandingHero() {
-  const [signOpen, setSignOpen] = useState(false);
-
   return (
-    <section className="relative h-screen min-h-[600px] w-full overflow-hidden bg-black">
-      {/* Background Image */}
+    <section className="relative min-h-screen w-full overflow-hidden bg-black px-4 py-28">
       <div className="absolute inset-0 z-0">
         <Image
           src="/hero.png"
@@ -18,80 +14,35 @@ export function LandingHero() {
           priority
         />
       </div>
+      <div className="absolute inset-0 z-0 bg-gradient-to-t from-black/82 via-black/18 to-black/50" />
 
-      {/* Ambient overlay to darken a bit */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-t from-black/80 via-transparent to-black/30" />
-
-      {/* Ambient Music (Requires user to add ambient-night.mp3 in public folder) */}
-      <audio autoPlay loop className="hidden">
-        <source src="/ambient-night.mp3" type="audio/mpeg" />
-      </audio>
-
-      {/* Protagonist Trainer — standing center, facing the path */}
-      <div className="absolute bottom-[18%] left-1/2 z-10 -translate-x-[70%] md:-translate-x-[80%]">
-         <Image 
-           src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/658.png" 
-           alt="Trainer protagonist" 
-           width={120}
-           height={120}
-           className="object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,.7)] md:h-40 md:w-40" 
-         />
+      <div className="absolute left-4 top-24 z-10 flex max-w-4xl flex-col items-start gap-6 sm:left-8 sm:top-28 lg:left-14">
+        <Image
+          src="/logo.jpg"
+          alt="BITNBUILD Logo"
+          width={760}
+          height={240}
+          className="h-auto w-[min(88vw,760px)] rounded-lg object-contain drop-shadow-[0_12px_30px_rgba(0,0,0,.9)]"
+          priority
+        />
+        <a
+          href="https://unstop.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ml-10 inline-flex min-h-11 items-center justify-center rounded-full border-2 border-poke-black bg-poke-yellow px-7 py-2 text-lg font-black uppercase tracking-wide text-slate-950 shadow-[0_7px_0_rgba(0,0,0,.42)] transition hover:-translate-y-1 hover:bg-yellow-300 focus:outline-none focus:ring-4 focus:ring-white/70 sm:ml-24 sm:min-h-12 sm:px-9 sm:text-xl lg:ml-40"
+        >
+          Register
+        </a>
       </div>
 
-      {/* Signboard */}
-      <div 
-        className="group absolute bottom-[22%] left-1/2 z-20 translate-x-[10%] cursor-pointer transition-transform hover:scale-110 md:translate-x-[20%]"
-        onClick={() => setSignOpen(true)}
-      >
-        <div className="relative flex h-20 w-24 flex-col items-center justify-end drop-shadow-xl">
-          {/* Sign Board */}
-          <div className="z-10 flex h-12 w-20 items-center justify-center rounded-sm border-[3px] border-[#3d2314] bg-[#8b5a2b] shadow-inner">
-            <div className="h-1 w-10 bg-[#5c3a21] opacity-50" />
-          </div>
-          {/* Sign Post */}
-          <div className="-mt-1 h-8 w-3 bg-[#5c3a21] border-x-2 border-[#3d2314]" />
-        </div>
-        {!signOpen && (
-          <div className="absolute -top-8 left-1/2 flex -translate-x-1/2 flex-col items-center animate-bounce opacity-0 transition-opacity group-hover:opacity-100">
-            <span className="whitespace-nowrap rounded-md border-2 border-white bg-black/80 px-2 py-1 font-mono text-[10px] font-bold text-white shadow-lg">
-              READ
-            </span>
-            <div className="-mt-1 h-2 w-2 rotate-45 border-b-2 border-r-2 border-white bg-black/80" />
-          </div>
-        )}
-      </div>
-
-      {/* Dialogue Box */}
-      {signOpen && (
-        <div className="absolute bottom-20 left-1/2 z-50 w-[90%] max-w-2xl -translate-x-1/2 rounded-md border-[4px] border-poke-black bg-[#f8f5eb] p-6 shadow-2xl animate-in fade-in slide-in-from-bottom-4">
-          <p className="font-mono text-xs font-bold uppercase text-poke-red">SIGNBOARD:</p>
-          <div className="mt-3 font-sans text-lg leading-relaxed text-slate-900 md:text-xl">
-            <p>Welcome to <strong>BITNBUILD 2026</strong>!</p>
-            <p className="mt-2 text-sm text-slate-600 md:text-base">A high-energy hackathon where teams enter as trainers, challenges become badges, and every demo is a Gym Battle. Your journey is about to begin.</p>
-          </div>
-          <div className="mt-4 flex flex-wrap gap-3">
-             <a href="https://unstop.com" target="_blank" rel="noopener noreferrer" className="rounded border-2 border-poke-black bg-poke-yellow px-4 py-2 font-bold text-black hover:bg-yellow-400">
-               Register on Unstop
-             </a>
-             <button 
-               onClick={(e) => { e.stopPropagation(); setSignOpen(false); }}
-               className="rounded border-2 border-poke-black bg-slate-200 px-4 py-2 font-bold text-black hover:bg-slate-300"
-             >
-               Close
-             </button>
-          </div>
-          
-          {/* Pointer to signboard */}
-          <div className="absolute -bottom-[14px] left-[70%] border-l-[14px] border-r-[14px] border-t-[14px] border-l-transparent border-r-transparent border-t-poke-black">
-            <div className="absolute -left-[10px] -top-[14px] border-l-[10px] border-r-[10px] border-t-[10px] border-l-transparent border-r-transparent border-t-[#f8f5eb]" />
-          </div>
-        </div>
-      )}
-
-      {/* Minimal UI: Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center animate-bounce opacity-80">
-        <span className="mb-2 font-mono text-xs font-bold tracking-widest text-white drop-shadow-md">SCROLL TO START</span>
-        <div className="h-4 w-4 rotate-45 border-b-4 border-r-4 border-white drop-shadow-md" />
+      <div className="absolute bottom-[14%] left-1/2 z-10 -translate-x-[70%] sm:bottom-[15%] md:-translate-x-[80%]">
+        <Image
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/658.png"
+          alt="Greninja guide"
+          width={160}
+          height={160}
+          className="h-28 w-28 object-contain drop-shadow-[0_10px_26px_rgba(0,0,0,.7)] sm:h-36 sm:w-36 md:h-44 md:w-44"
+        />
       </div>
     </section>
   );

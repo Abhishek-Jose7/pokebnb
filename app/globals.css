@@ -41,6 +41,25 @@ body {
   font-family: var(--font-body), system-ui, sans-serif;
 }
 
+input,
+select,
+textarea {
+  color: #ffffff;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #cbd5e1;
+  opacity: 1;
+}
+
+.wmde-markdown-var,
+.w-md-editor,
+.w-md-editor textarea,
+.w-md-editor-preview {
+  color: #f8fafc !important;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

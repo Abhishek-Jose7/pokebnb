@@ -25,6 +25,7 @@ const nav = {
     [Home, "Dashboard", "/judge"],
     [Search, "Scan QR", "/judge/scan"],
     [Calendar, "My Schedule", "/judge/schedule"],
+    [Trophy, "Leaderboard", "/judge/leaderboard"],
   ],
   participant: [
     [Home, "Home", "/participant"],
@@ -80,9 +81,9 @@ export function PokedexSidebar({ profile }: { profile: Profile }) {
           </div>
         </div>
       </aside>
-      <nav className="fixed bottom-0 left-0 right-0 z-40 grid grid-cols-5 border-t-4 border-poke-black bg-poke-red p-1 lg:hidden">
-        {items.slice(0, 5).map(([Icon, label, href]) => (
-          <Link key={href} href={href} className={cn("grid min-h-14 place-items-center rounded text-[10px] font-bold text-white", pathname === href && "bg-poke-yellow text-slate-950")}>
+      <nav className="fixed bottom-0 left-0 right-0 z-40 flex gap-1 overflow-x-auto border-t-4 border-poke-black bg-poke-red p-1 lg:hidden">
+        {items.map(([Icon, label, href]) => (
+          <Link key={href} href={href} className={cn("grid min-h-16 min-w-20 place-items-center rounded px-2 text-center text-[10px] font-bold text-white", pathname === href && "bg-poke-yellow text-slate-950")}>
             <Icon className="h-5 w-5" />
             <span className="truncate">{label.split(" ")[0]}</span>
           </Link>

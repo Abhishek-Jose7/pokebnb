@@ -9,9 +9,19 @@ import { HpBar } from "@/components/pokemon/HpBar";
 import { createClient } from "@/lib/supabase/client";
 import type { Round, Team } from "@/types";
 
-export function ScoringForm({ team, round, judgeId }: { team: Team; round: Round; judgeId: string }) {
-  const [scores, setScores] = useState<Record<string, number>>(() => Object.fromEntries(round.scoring_criteria.map((criterion) => [criterion.name, 0])));
-  const [remarks, setRemarks] = useState("");
+export function ScoringForm({
+  team,
+  round,
+  judgeId,
+  initialScore,
+}: {
+  team: Team;
+  round: Round;
+  judgeId: string;
+  initialScore?: { criteria_scores: Record<string, number>; remarks: string | null } | null;
+}) {
+  const [scores, setScores] = useState<Record<string, number>>(() => Object.fromEntries(round.scoring_criteria.map((criterion) => [criterion.name, initialScore?.criteria_scores?.[criterion.name] ?? 0])));
+  const [remarks, setRemarks] = useState(initialScore?.remarks ?? "");
   const [caught, setCaught] = useState(false);
   const total = useMemo(() => Object.values(scores).reduce((sum, value) => sum + value, 0), [scores]);
   const max = round.scoring_criteria.reduce((sum, criterion) => sum + criterion.max_score, 0);
@@ -38,16 +48,16 @@ export function ScoringForm({ team, round, judgeId }: { team: Team; round: Round
   return (
     <div className="grid gap-5">
       <div className="rounded-lg border border-border bg-slate-950/30 p-4">
-        <p className="font-display text-sm leading-7 text-poke-yellow">{team.name}</p>
-        <p className="text-sm text-slate-300">{round.name}</p>
+        <p className="font-display text-base leading-8 text-poke-yellow">{team.name}</p>
+        <p className="text-sm text-slate-200">{round.name}</p>
       </div>
       {round.scoring_criteria.map((criterion) => (
         <label key={criterion.name} className="grid gap-2 rounded-lg border border-border bg-slate-950/30 p-4">
           <span className="font-bold">{criterion.name}</span>
-          <span className="text-sm text-slate-300">{criterion.description}</span>
+          {criterion.description ? <span className="text-sm text-slate-200">{criterion.description}</span> : null}
           <div className="grid grid-cols-[1fr_5rem] gap-3">
             <input type="range" min={0} max={criterion.max_score} value={scores[criterion.name]} onChange={(event) => setScores((current) => ({ ...current, [criterion.name]: Number(event.target.value) }))} />
-            <input className="rounded-md border border-border bg-slate-950/50 px-2 font-mono" type="number" min={0} max={criterion.max_score} value={scores[criterion.name]} onChange={(event) => setScores((current) => ({ ...current, [criterion.name]: Number(event.target.value) }))} />
+            <input className="min-h-11 rounded-md border border-border bg-slate-950/70 px-2 font-mono text-white" type="number" min={0} max={criterion.max_score} value={scores[criterion.name]} onChange={(event) => setScores((current) => ({ ...current, [criterion.name]: Math.min(criterion.max_score, Math.max(0, Number(event.target.value))) }))} />
           </div>
         </label>
       ))}

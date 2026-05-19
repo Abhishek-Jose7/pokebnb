@@ -1,34 +1,90 @@
 <w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (101kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
 <w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (231kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
- ⨯ ./components/landing/CutscenePreloader.tsx
-Error: 
-  [31mx[0m Unexpected token `div`. Expected jsx identifier
-    ,-[[36;1;4mC:\pokemon\components\landing\CutscenePreloader.tsx[0m:21:1]
- [2m21[0m |   if (phase === "done") return null;
- [2m22[0m | 
- [2m23[0m |   return (
- [2m24[0m |     <div
-    : [31;1m     ^^^[0m
- [2m25[0m |       aria-hidden="true"
- [2m26[0m |       className={`fixed inset-0 z-50 grid place-items-center transition-opacity duration-300 ${phase === "flash" ? "bg-white" : "bg-black"}`}
- [2m27[0m |     >
-    `----
+ ⨯ ./components/landing/RouteTimeline.tsx
+Error: Failed to read source code from C:\pokemon\components\landing\RouteTimeline.tsx
 
 Caused by:
-    Syntax Error
+    The system cannot find the file specified. (os error 2)
 
 Import trace for requested module:
-./components/landing/CutscenePreloader.tsx
+./components/landing/RouteTimeline.tsx
 ./app/page.tsx
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\pokemon\.next\cache\webpack\client-development\5.pack.gz_' -> 'C:\pokemon\.next\cache\webpack\client-development\5.pack.gz'
-<w> [webpack.cache.PackFileCacheStrategy] Restoring pack from C:\pokemon\.next\cache\webpack\server-development.pack.gz failed: TypeError: Cannot read properties of undefined (reading 'hasStartTime')
-<w> [webpack.cache.PackFileCacheStrategy] Restoring pack from C:\pokemon\.next\cache\webpack\client-development.pack.gz failed: TypeError: Cannot read properties of undefined (reading 'hasStartTime')
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\pokemon\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\pokemon\.next\cache\webpack\client-development\0.pack.gz'
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: EPERM: operation not permitted, rename 'C:\pokemon\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\pokemon\.next\cache\webpack\client-development\0.pack.gz'
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\pokemon\.next\cache\webpack\server-development\0.pack.gz_' -> 'C:\pokemon\.next\cache\webpack\server-development\0.pack.gz'
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\pokemon\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\pokemon\.next\cache\webpack\client-development\0.pack.gz'
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\pokemon\.next\cache\webpack\server-development\0.pack.gz_' -> 'C:\pokemon\.next\cache\webpack\server-development\0.pack.gz'
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\pokemon\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\pokemon\.next\cache\webpack\client-development\0.pack.gz'
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\pokemon\.next\cache\webpack\server-development\0.pack.gz_' -> 'C:\pokemon\.next\cache\webpack\server-development\0.pack.gz'
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\pokemon\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\pokemon\.next\cache\webpack\client-development\0.pack.gz'
-<w> [webpack.cache.PackFileCacheStrategy] Restoring pack from C:\pokemon\.next\cache\webpack\server-development.pack.gz failed: TypeError: Cannot read properties of undefined (reading 'hasStartTime')
+ ⨯ ./components/landing/RouteTimeline.tsx
+Error: Failed to read source code from C:\pokemon\components\landing\RouteTimeline.tsx
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./components/landing/RouteTimeline.tsx
+./app/page.tsx
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ ./components/landing/RouteTimeline.tsx
+Error: Failed to read source code from C:\pokemon\components\landing\RouteTimeline.tsx
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./components/landing/RouteTimeline.tsx
+./app/page.tsx
+ ⨯ ./components/landing/RouteTimeline.tsx
+Error: Failed to read source code from C:\pokemon\components\landing\RouteTimeline.tsx
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./components/landing/RouteTimeline.tsx
+./app/page.tsx
+ ⨯ ./components/landing/RouteTimeline.tsx
+Error: Failed to read source code from C:\pokemon\components\landing\RouteTimeline.tsx
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./components/landing/RouteTimeline.tsx
+./app/page.tsx
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⨯ ./components/landing/RouteTimeline.tsx
+Error: Failed to read source code from C:\pokemon\components\landing\RouteTimeline.tsx
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./components/landing/RouteTimeline.tsx
+./app/page.tsx
+ ⨯ ./components/landing/RouteTimeline.tsx
+Error: Failed to read source code from C:\pokemon\components\landing\RouteTimeline.tsx
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./components/landing/RouteTimeline.tsx
+./app/page.tsx
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ ./components/judge/QRTeamScanner.tsx
+Error: Failed to read source code from C:\pokemon\components\judge\QRTeamScanner.tsx
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./components/judge/QRTeamScanner.tsx
+ ⨯ ./components/judge/QRTeamScanner.tsx
+Error: Failed to read source code from C:\pokemon\components\judge\QRTeamScanner.tsx
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./components/judge/QRTeamScanner.tsx
+./app/(dashboard)/judge/scan/page.tsx
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
