@@ -315,3 +315,92 @@ Import trace for requested module:
 ./app/page.tsx
 <w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\pokemon\.next\cache\webpack\server-development\0.pack.gz_' -> 'C:\pokemon\.next\cache\webpack\server-development\0.pack.gz'
 <w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\pokemon\.next\cache\webpack\client-development\3.pack.gz_' -> 'C:\pokemon\.next\cache\webpack\client-development\3.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'C:\pokemon\.next\server\app\api'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/leaderboard/route' in C:\pokemon\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'C:\pokemon\.next\server\app\api\leaderboard\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/leaderboard/route' in 'C:\pokemon\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/leaderboard/route (expected C:\pokemon\.next\server\app\api\leaderboard\route.js)
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\server\require.js
+<w>  at file C:\pokemon\node_modules\next\dist\server\require.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\server\load-components.js
+<w>  at file C:\pokemon\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\server\dev\static-paths-worker.js
+<w>  at file C:\pokemon\node_modules\next\dist\server\dev\static-paths-worker.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\compiled\jest-worker\index.js
+<w>  at file C:\pokemon\node_modules\next\dist\compiled\jest-worker\index.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\server\lib\squoosh\main.js
+<w>  at file C:\pokemon\node_modules\next\dist\server\lib\squoosh\main.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\server\image-optimizer.js
+<w>  at file C:\pokemon\node_modules\next\dist\server\image-optimizer.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\build\webpack\loaders\next-metadata-image-loader.js
+<w>  at file C:\pokemon\node_modules\next\dist\build\webpack\loaders\next-metadata-image-loader.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\compiled\loader-runner\LoaderRunner.js
+<w>  at file C:\pokemon\node_modules\next\dist\compiled\loader-runner\LoaderRunner.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\compiled\webpack\bundle5.js
+<w>  at file C:\pokemon\node_modules\next\dist\compiled\webpack\bundle5.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\compiled\webpack\webpack.js
+<w>  at file C:\pokemon\node_modules\next\dist\compiled\webpack\webpack.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\build\webpack\plugins\define-env-plugin.js
+<w>  at file C:\pokemon\node_modules\next\dist\build\webpack\plugins\define-env-plugin.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\build\swc\index.js
+<w>  at file C:\pokemon\node_modules\next\dist\build\swc\index.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\build\webpack\loaders\next-barrel-loader.js
+<w>  at file C:\pokemon\node_modules\next\dist\build\webpack\loaders\next-barrel-loader.js
+<w>  at resolve commonjs C:\pokemon\node_modules\next\dist\build\webpack\loaders\next-barrel-loader.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/_not-found/page' in C:\pokemon\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'C:\pokemon\.next\server\app\_not-found\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/_not-found/page' in 'C:\pokemon\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/_not-found/page (expected C:\pokemon\.next\server\app\_not-found\page.js)
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\server\require.js
+<w>  at file C:\pokemon\node_modules\next\dist\server\require.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\server\load-components.js
+<w>  at file C:\pokemon\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\server\dev\static-paths-worker.js
+<w>  at file C:\pokemon\node_modules\next\dist\server\dev\static-paths-worker.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\compiled\jest-worker\index.js
+<w>  at file C:\pokemon\node_modules\next\dist\compiled\jest-worker\index.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\server\lib\squoosh\main.js
+<w>  at file C:\pokemon\node_modules\next\dist\server\lib\squoosh\main.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\server\image-optimizer.js
+<w>  at file C:\pokemon\node_modules\next\dist\server\image-optimizer.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\build\webpack\loaders\next-metadata-image-loader.js
+<w>  at file C:\pokemon\node_modules\next\dist\build\webpack\loaders\next-metadata-image-loader.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\compiled\loader-runner\LoaderRunner.js
+<w>  at file C:\pokemon\node_modules\next\dist\compiled\loader-runner\LoaderRunner.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\compiled\webpack\bundle5.js
+<w>  at file C:\pokemon\node_modules\next\dist\compiled\webpack\bundle5.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\compiled\webpack\webpack.js
+<w>  at file C:\pokemon\node_modules\next\dist\compiled\webpack\webpack.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\build\webpack\plugins\define-env-plugin.js
+<w>  at file C:\pokemon\node_modules\next\dist\build\webpack\plugins\define-env-plugin.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\build\swc\index.js
+<w>  at file C:\pokemon\node_modules\next\dist\build\swc\index.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\build\webpack\loaders\next-barrel-loader.js
+<w>  at file C:\pokemon\node_modules\next\dist\build\webpack\loaders\next-barrel-loader.js
+<w>  at resolve commonjs C:\pokemon\node_modules\next\dist\build\webpack\loaders\next-barrel-loader.js
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'C:\pokemon\.next\server\app\api'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/leaderboard/route' in C:\pokemon\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'C:\pokemon\.next\server\app\api\leaderboard\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/leaderboard/route' in 'C:\pokemon\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/leaderboard/route (expected C:\pokemon\.next\server\app\api\leaderboard\route.js)
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\server\require.js
+<w>  at file C:\pokemon\node_modules\next\dist\server\require.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\server\load-components.js
+<w>  at file C:\pokemon\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\server\dev\static-paths-worker.js
+<w>  at file C:\pokemon\node_modules\next\dist\server\dev\static-paths-worker.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\compiled\jest-worker\index.js
+<w>  at file C:\pokemon\node_modules\next\dist\compiled\jest-worker\index.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\server\lib\squoosh\main.js
+<w>  at file C:\pokemon\node_modules\next\dist\server\lib\squoosh\main.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\server\image-optimizer.js
+<w>  at file C:\pokemon\node_modules\next\dist\server\image-optimizer.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\build\webpack\loaders\next-metadata-image-loader.js
+<w>  at file C:\pokemon\node_modules\next\dist\build\webpack\loaders\next-metadata-image-loader.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\compiled\loader-runner\LoaderRunner.js
+<w>  at file C:\pokemon\node_modules\next\dist\compiled\loader-runner\LoaderRunner.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\compiled\webpack\bundle5.js
+<w>  at file C:\pokemon\node_modules\next\dist\compiled\webpack\bundle5.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\compiled\webpack\webpack.js
+<w>  at file C:\pokemon\node_modules\next\dist\compiled\webpack\webpack.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\build\webpack\plugins\define-env-plugin.js
+<w>  at file C:\pokemon\node_modules\next\dist\build\webpack\plugins\define-env-plugin.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\build\swc\index.js
+<w>  at file C:\pokemon\node_modules\next\dist\build\swc\index.js
+<w>  at file dependencies C:\pokemon\node_modules\next\dist\build\webpack\loaders\next-barrel-loader.js
+<w>  at file C:\pokemon\node_modules\next\dist\build\webpack\loaders\next-barrel-loader.js
+<w>  at resolve commonjs C:\pokemon\node_modules\next\dist\build\webpack\loaders\next-barrel-loader.js

@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { CutscenePreloader } from "@/components/landing/CutscenePreloader";
 import { LandingNavbar } from "@/components/landing/LandingNavbar";
 import { LandingHero } from "@/components/landing/LandingHero";
