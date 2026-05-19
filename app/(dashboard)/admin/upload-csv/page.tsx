@@ -7,7 +7,7 @@ import { Upload, CheckCircle, AlertCircle } from "lucide-react";
 export default function AdminUploadCSV() {
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<{ success: number; errors: string[] } | null>(null);
+  const [result, setResult] = useState<{ success: number; errors: string[]; generatedUsers?: Array<{email: string; password: string; trainerId: string}> } | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -34,7 +34,7 @@ export default function AdminUploadCSV() {
           const json = await res.json();
           if (!res.ok) throw new Error(json.error || "Failed to process CSV");
 
-          setResult({ success: json.successCount, errors: json.errors });
+          setResult({ success: json.successCount, errors: json.errors, generatedUsers: json.generatedUsers });
         } catch (err: unknown) {
           if (err instanceof Error) {
             setResult({ success: 0, errors: [err.message] });
@@ -106,6 +106,35 @@ export default function AdminUploadCSV() {
                 <ul className="mt-2 max-h-40 overflow-y-auto rounded bg-red-50 p-3 text-sm text-red-800">
                   {result.errors.map((err, i) => <li key={i}>{err}</li>)}
                 </ul>
+              </div>
+            )}
+
+            {result.generatedUsers && result.generatedUsers.length > 0 && (
+              <div className="mt-6">
+                <div className="flex items-center justify-between">
+                  <p className="text-sm font-bold text-slate-800">Generated Credentials:</p>
+                  <button
+                    className="rounded bg-poke-blue px-3 py-1 text-xs font-bold text-white hover:bg-blue-700"
+                    onClick={() => {
+                      const csv = "Email,Password,Trainer ID\n" + result.generatedUsers!.map(u => `${u.email},${u.password},${u.trainerId}`).join("\n");
+                      const blob = new Blob([csv], { type: "text/csv" });
+                      const url = URL.createObjectURL(blob);
+                      const a = document.createElement("a");
+                      a.href = url; a.download = "credentials.csv"; a.click();
+                      URL.revokeObjectURL(url);
+                    }}
+                  >Export CSV</button>
+                </div>
+                <div className="mt-2 max-h-60 overflow-y-auto rounded border">
+                  <table className="w-full text-left text-xs">
+                    <thead className="bg-slate-100 text-slate-600"><tr><th className="p-2">Email</th><th className="p-2">Password</th><th className="p-2">Trainer ID</th></tr></thead>
+                    <tbody>
+                      {result.generatedUsers.map((u, i) => (
+                        <tr key={i} className="border-t"><td className="p-2">{u.email}</td><td className="p-2 font-mono">{u.password}</td><td className="p-2 font-mono">{u.trainerId}</td></tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             )}
           </div>

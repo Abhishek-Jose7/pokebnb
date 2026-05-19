@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const { data: profile } = await supabase.from("profiles").select("role").eq("id", user.id).maybeSingle();
-  if (profile?.role !== "admin") return NextResponse.json({ error: "Admin only" }, { status: 403 });
+  if (profile?.role !== "admin" && profile?.role !== "judge") return NextResponse.json({ error: "Unauthorized role" }, { status: 403 });
 
   const body = await request.json().catch(() => ({}));
   const payload = parseQr(String(body.decoded ?? ""));

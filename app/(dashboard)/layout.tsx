@@ -29,6 +29,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
     food_claimed: {},
     qr_token: null,
     phone: null,
+    specialty: null,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   };
@@ -39,7 +40,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
     <Providers>
     <div>
       {!isParticipant ? <PokedexSidebar profile={shellProfile} /> : null}
-      <main className={`min-h-screen px-4 pt-5 ${isParticipant ? "pb-8 lg:px-8" : "pb-28 lg:ml-72 lg:px-8 lg:pb-8"}`}>
+      <main className={`min-h-screen px-4 pt-5 ${isParticipant ? "bg-gradient-to-br from-[#0a1628] via-[#0d1e1a] to-[#0f1520] pb-8 lg:px-8" : "pb-28 lg:ml-72 lg:px-8 lg:pb-8"}`}>
         {children}
       </main>
     </div>

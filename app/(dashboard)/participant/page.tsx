@@ -14,7 +14,7 @@ export default async function ParticipantHomePage() {
   ]);
   if (!profile) return null;
   return (
-    <div className="mx-auto grid max-w-7xl gap-5">
+    <div className="mx-auto grid max-w-7xl gap-5" style={{ minHeight: "100vh" }}>
       <HackathonPage
         trainer={{
           name: profile.full_name,

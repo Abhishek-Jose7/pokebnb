@@ -14,9 +14,13 @@ export interface Profile {
   pokemon_sprite: string | null;
   team_id: string | null;
   is_checked_in: boolean;
+  breakfast: boolean;
+  lunch: boolean;
+  dinner: boolean;
   food_claimed: Record<string, boolean>;
   qr_token: string | null;
   phone: string | null;
+  specialty: string | null;
   created_at: string;
   updated_at: string;
 }

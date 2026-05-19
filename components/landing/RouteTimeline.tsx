@@ -13,7 +13,7 @@ export function RouteTimeline() {
   return (
     <section id="timeline" className="relative overflow-hidden bg-[#081f20] px-4 py-28 text-white sm:px-6">
       <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#0f2318] to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0e1722] to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#081f20] to-transparent" />
       <div className="absolute left-[-10%] top-20 h-72 w-72 rounded-full bg-emerald-400/10 blur-3xl" />
       <div className="absolute right-[-8%] bottom-20 h-80 w-80 rounded-full bg-sky-300/10 blur-3xl" />
 

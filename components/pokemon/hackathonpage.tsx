@@ -167,8 +167,10 @@ export default function HackathonPage({ trainer, team, members, schedule, announ
   ];
 
   return (
-    <section className="flex w-full items-center justify-center py-4 lg:py-8">
-      <HackPokedex pages={pages} status={trainer.checkedIn ? "green" : "yellow"} eventName="BITNBUILD 2025" />
+    <section className="flex w-full items-center justify-center px-2 py-4 lg:px-0 lg:py-10">
+      <div className="w-full max-w-[1280px] origin-center lg:scale-[1.15] xl:scale-[1.25]">
+        <HackPokedex pages={pages} status={trainer.checkedIn ? "green" : "yellow"} eventName="BITNBUILD 2025" />
+      </div>
     </section>
   );
 }

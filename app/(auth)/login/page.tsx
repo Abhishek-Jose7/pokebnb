@@ -72,16 +72,16 @@ export default function LoginPage() {
             <p className="max-w-xl text-lg text-slate-200">
               Trainers enter here. Gym Leaders score battles, Professors run the League, and every badge-worthy build gets tracked.
             </p>
-            <div className="mt-8 flex gap-4">
+            <div className="mt-8 flex flex-wrap gap-4">
               {[1, 4, 7, 25].map((id) => (
-                <div key={id} className="grid h-20 w-20 place-items-center rounded-lg border border-border bg-white/10">
-                  <Image src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`} alt="" width={72} height={72} />
+                <div key={id} className="grid h-16 w-16 place-items-center rounded-lg border border-border bg-white/10 sm:h-20 sm:w-20">
+                  <Image src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`} alt="" width={72} height={72} className="h-12 w-12 sm:h-18 sm:w-18" />
                 </div>
               ))}
             </div>
           </div>
         </section>
-        <form onSubmit={submit} className="rounded-xl border border-border bg-card p-6 shadow-card">
+        <form onSubmit={submit} className="rounded-xl border border-border bg-card p-4 shadow-card sm:p-6">
           <h2 className="mb-6 font-display text-sm leading-7 text-poke-yellow">Trainer Login</h2>
           <label className="mb-4 block text-sm font-bold">
             Email

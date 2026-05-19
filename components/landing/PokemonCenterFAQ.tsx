@@ -99,11 +99,36 @@ export function PokemonCenterFAQ() {
             Talk To The NPCs.
           </h2>
           <p className="mt-4 max-w-3xl text-xl leading-8 text-slate-300 sm:text-2xl sm:leading-9">
-            Tap an exclamation mark in the Pokemon Center to ask questions about the hackathon.
+            Tap a question mark in the Pokemon Center to ask questions about the hackathon.
           </p>
         </div>
 
-        <div className="relative mx-auto h-[520px] w-full max-w-5xl overflow-hidden rounded-lg border-4 border-poke-black shadow-[0_20px_50px_rgba(0,0,0,0.5)] sm:h-[620px]">
+        {/* Mobile View: Stacked NPCs */}
+        <div className="mt-8 flex flex-col gap-4 sm:hidden">
+          {npcs.map((person, index) => (
+            <div key={person.name} className="flex flex-col rounded-md border-[3px] border-poke-black bg-[#f8f5eb] p-4 shadow-lg">
+              <div className="flex items-center gap-3">
+                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border-[3px] border-poke-black bg-poke-yellow text-center text-2xl font-black leading-none text-poke-red shadow-[0_3px_0_rgba(0,0,0,.35)]">
+                  ?
+                </div>
+                <div>
+                  <p className="font-mono text-sm font-bold tracking-widest text-poke-red">
+                    {person.name}
+                  </p>
+                  <p className="font-mono text-[10px] font-black uppercase text-slate-500">
+                    {person.role}
+                  </p>
+                </div>
+              </div>
+              <div className="mt-3 font-sans text-sm leading-relaxed text-slate-900">
+                <p>{person.lines.join(" ")}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop View: Interactive Image Map */}
+        <div className="relative mx-auto mt-10 hidden h-[520px] w-full max-w-5xl overflow-hidden rounded-lg border-4 border-poke-black shadow-[0_20px_50px_rgba(0,0,0,0.5)] sm:block sm:h-[620px]">
           <div className="absolute inset-0 bg-[url('/faq.jpg')] bg-cover bg-center" />
           <div className="absolute inset-0 bg-black/40 mix-blend-multiply" />
           <div className="absolute inset-0 bg-[#ffaa00]/10 mix-blend-color-burn" />
@@ -152,8 +177,8 @@ export function PokemonCenterFAQ() {
                   className="group flex h-16 w-16 cursor-pointer flex-col items-center justify-center transition-transform hover:-translate-y-2 focus:outline-none focus-visible:ring-4 focus-visible:ring-poke-yellow/70 sm:h-20 sm:w-20"
                   aria-label={`Talk to ${person.name}`}
                 >
-                  <div className={`grid h-9 w-9 place-items-center rounded-full border-[3px] border-poke-black bg-poke-yellow text-center text-3xl font-black leading-none text-poke-red shadow-[0_5px_0_rgba(0,0,0,.35)] transition group-hover:scale-110 sm:h-11 sm:w-11 sm:text-4xl ${active === index ? "animate-bounce" : ""}`}>
-                    !
+                  <div className={`grid h-9 w-9 place-items-center rounded-full border-[3px] border-poke-black bg-poke-yellow pb-1 text-center text-3xl font-black leading-none text-poke-red shadow-[0_5px_0_rgba(0,0,0,.35)] transition group-hover:scale-110 sm:h-11 sm:w-11 sm:text-4xl ${active === index ? "animate-bounce" : ""}`}>
+                    ?
                   </div>
                   <span className={`mt-2 max-w-28 rounded bg-white/95 px-2 py-1 text-center font-mono text-[9px] font-black uppercase text-poke-red shadow transition ${active === index ? "opacity-100" : "opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100"}`}>
                     {person.role}

@@ -5,6 +5,7 @@ import { LandingNavbar } from "@/components/landing/LandingNavbar";
 import { LandingHero } from "@/components/landing/LandingHero";
 import { PokemonCenterFAQ } from "@/components/landing/PokemonCenterFAQ";
 import { RouteTimeline } from "@/components/landing/RouteTimeline";
+import { Countdown } from "@/components/landing/Countdown";
 
 const domains = [
   ["Web/App Dev", "Bulbasaur", "Build useful web and mobile products that people can actually use.", "/images/bulbasaur.png", "from-green-500/25"],
@@ -77,8 +78,8 @@ export default function HomePage() {
       <main className="overflow-hidden text-xl sm:text-2xl">
       <LandingHero />
 
-      {/* Transition image between hero and about */}
-      <div className="w-full overflow-hidden block">
+      {/* Transition image between hero and about — with countdown overlay */}
+      <div className="relative w-full overflow-hidden block">
         <Image
           src="/merge.jpg"
           alt="Route Transition"
@@ -87,15 +88,18 @@ export default function HomePage() {
           className="w-full h-auto object-contain block"
           priority
         />
+        <div className="absolute inset-0 z-10 flex items-center justify-center">
+          <Countdown targetIso="2026-10-25T09:00:00+05:30" />
+        </div>
       </div>
 
         <section id="about" className="relative bg-[url('/oakbg.jpg')] bg-cover bg-center px-4 pt-32 pb-40 text-slate-950 sm:px-6">
           {/* Blend Gradient into next section */}
           <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-[#0f2318]" />
           
-          <div className="relative z-10 mx-auto grid max-w-[80rem] items-start gap-12 lg:grid-cols-[1fr_1.3fr]">
+          <div className="relative z-10 mx-auto grid max-w-[80rem] items-center gap-12 lg:grid-cols-[1fr_1fr]">
             {/* Map Area — smaller, shifted right */}
-            <div className="relative ml-auto w-full max-w-sm overflow-hidden rounded-lg border-[4px] border-poke-black bg-[#e6f0fa]/90 shadow-2xl backdrop-blur order-2 lg:order-1">
+            <div className="relative mx-auto w-full max-w-xs overflow-hidden rounded-lg border-[4px] border-poke-black bg-[#e6f0fa]/90 shadow-2xl backdrop-blur order-2 lg:order-1 lg:ml-auto lg:mr-0 lg:translate-x-12">
               <div className="aspect-video relative">
                 <Image
                   src="/images/worldmap.png.png"
@@ -108,20 +112,20 @@ export default function HomePage() {
             </div>
 
             {/* Oak's Dialogue Area — dialogue on top, Oak bigger and below */}
-            <div className="flex flex-col items-center order-1 lg:order-2">
-              <div className="relative mb-8 w-full rounded-md border-[4px] border-poke-black bg-white p-6 shadow-xl">
+            <div className="flex flex-col items-center order-1 lg:order-2 lg:translate-y-12">
+              <div className="relative mb-6 w-full max-w-md rounded-md border-[4px] border-poke-black bg-white p-6 shadow-xl">
                 <p className="font-mono text-sm font-bold uppercase text-poke-red">PROF. OAK:</p>
                 <div className="mt-3 font-sans text-xl leading-relaxed text-slate-900">
                   <p>Welcome to BitnBuild 2025, a global hackathon in Mumbai!</p>
                   <p className="mt-4">A 24-hour event full of creativity, innovation, and endless possibilities.</p>
                   <p className="mt-4">Are you ready to compete with the best and unlock your potential?</p>
                 </div>
-                {/* Pointer to Oak (below pointing down) */}
-                <div className="absolute -bottom-[14px] left-1/2 -translate-x-1/2 border-t-[14px] border-l-[14px] border-r-[14px] border-t-poke-black border-l-transparent border-r-transparent">
+                {/* Pointer to Oak (below pointing down-right) */}
+                <div className="absolute -bottom-[14px] right-12 border-t-[14px] border-l-[14px] border-r-[14px] border-t-poke-black border-l-transparent border-r-transparent">
                   <div className="absolute -left-[10px] bottom-[4px] border-t-[10px] border-l-[10px] border-r-[10px] border-t-white border-l-transparent border-r-transparent" />
                 </div>
               </div>
-              <Image src="/oak.jpg" alt="Professor Oak" width={400} height={600} className="mt-2 object-contain drop-shadow-xl" />
+              <Image src="/oak.jpg" alt="Professor Oak" width={480} height={720} className="object-contain drop-shadow-xl" />
             </div>
           </div>
         </section>
@@ -154,9 +158,7 @@ export default function HomePage() {
 
         <RouteTimeline />
 
-        <section id="prizes" className="relative overflow-hidden bg-[#0e1722] px-4 py-28 sm:px-6">
-          <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#fff7db] to-transparent opacity-80" />
-          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white to-transparent opacity-95" />
+        <section id="prizes" className="relative overflow-hidden bg-gradient-to-b from-[#081f20] via-[#0b1b1f] to-[#0e1722] px-4 py-28 sm:px-6">
           <Image
             src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/149.png"
             alt=""
@@ -292,12 +294,24 @@ export default function HomePage() {
             </div>
             <div className="rounded-lg border-4 border-poke-black bg-[#101b27] p-7 text-xl">
               <p className="text-3xl font-black text-poke-yellow">Organizer Desk</p>
-              <p className="mt-4">Email: {process.env.NEXT_PUBLIC_ORGANIZER_EMAIL ?? "organizer@example.com"}</p>
-              <p>Phone: {process.env.NEXT_PUBLIC_ORGANIZER_PHONE ?? "+91-XXXXXXXXXX"}</p>
+              <p className="mt-4">Email: {process.env.NEXT_PUBLIC_ORGANIZER_EMAIL ?? "contact@bitnbuild.com"}</p>
+              <p>Phone: {process.env.NEXT_PUBLIC_ORGANIZER_PHONE ?? "+91-9876543210"}</p>
+              <p>Address: Vidyavihar, Mumbai, India</p>
               <Link href="/login" className="mt-6 inline-flex min-h-14 items-center rounded-md bg-poke-yellow px-7 text-xl font-black text-slate-950">Dashboard Login</Link>
             </div>
           </div>
         </section>
+
+        <footer className="bg-poke-black py-10 px-4 sm:px-6 text-center text-slate-400 border-t border-white/10">
+          <div className="mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between">
+            <p className="font-mono text-sm tracking-widest text-poke-yellow">© 2025 BITNBUILD. All rights reserved.</p>
+            <div className="flex gap-6 mt-4 md:mt-0 font-mono text-sm">
+              <a href="#" className="hover:text-white transition-colors">Instagram</a>
+              <a href="#" className="hover:text-white transition-colors">Twitter</a>
+              <a href="#" className="hover:text-white transition-colors">Discord</a>
+            </div>
+          </div>
+        </footer>
       </main>
     </>
   );

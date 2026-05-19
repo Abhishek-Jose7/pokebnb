@@ -21,13 +21,25 @@ export function Countdown({ targetIso }: { targetIso: string }) {
   }, [target]);
 
   return (
-    <div className="grid grid-cols-4 gap-2 sm:gap-3" aria-label="Countdown to BITNBUILD">
-      {Object.entries(remaining).map(([label, value]) => (
-        <div key={label} className="rounded-lg border border-white/15 bg-white/10 p-3 text-center backdrop-blur">
-          <p className="font-mono text-2xl text-poke-yellow sm:text-4xl">{String(value).padStart(2, "0")}</p>
-          <p className="text-[11px] font-black uppercase text-slate-200 sm:text-xs">{label}</p>
-        </div>
-      ))}
+    <div className="flex flex-col items-center gap-3">
+      <p className="font-display text-base tracking-[0.3em] text-poke-yellow drop-shadow-[0_4px_12px_rgba(0,0,0,.8)] sm:text-lg">
+        EVENT STARTS IN
+      </p>
+      <div className="flex items-center gap-2 sm:gap-4" aria-label="Countdown to BITNBUILD">
+        {Object.entries(remaining).map(([label, value]) => (
+          <div key={label} className="flex flex-col items-center">
+            <span className="font-display text-4xl tabular-nums text-white drop-shadow-[0_4px_16px_rgba(0,0,0,.9)] sm:text-5xl md:text-6xl">
+              {String(value).padStart(2, "0")}
+            </span>
+            <span className="mt-1 font-display text-[0.55rem] tracking-[0.2em] text-poke-yellow/80 sm:text-xs">
+              {label.toUpperCase()}
+            </span>
+          </div>
+        ))}
+      </div>
+      <p className="font-display text-sm tracking-widest text-white/60 sm:text-base">
+        25 OCTOBER 2026
+      </p>
     </div>
   );
 }

@@ -23,6 +23,7 @@ export async function POST(req: NextRequest) {
 
     let successCount = 0;
     const errors: string[] = [];
+    const generatedUsers: Array<{email: string; password: string; trainerId: string}> = [];
 
     // Begin transaction
     await client.query("BEGIN");
@@ -49,10 +50,11 @@ export async function POST(req: NextRequest) {
         `, [userId, email, password]);
 
         // 2. Create auth.identity
+        const identityData = JSON.stringify({ sub: userId, email: email, email_verified: true, phone_verified: false });
         await client.query(`
           INSERT INTO auth.identities (id, provider_id, user_id, identity_data, provider, created_at, updated_at, last_sign_in_at)
-          VALUES (gen_random_uuid(), $1, $1, $2, 'email', NOW(), NOW(), NOW())
-        `, [userId, JSON.stringify({ sub: userId, email: email })]);
+          VALUES (gen_random_uuid(), $1::text, $1::uuid, $2::jsonb, 'email', NOW(), NOW(), NOW())
+        `, [userId, identityData]);
 
         // 3. Handle Team logic (simplified: if team_name provided, create or get team)
         let teamId = null;
@@ -70,10 +72,11 @@ export async function POST(req: NextRequest) {
         }
 
         // 4. Create public.profile
+        const trainerId = `TRN-${(successCount + 1).toString().padStart(4, '0')}`;
         await client.query(`
-          INSERT INTO public.profiles (id, email, full_name, role, team_id, qr_token)
-          VALUES ($1, $2, $3, 'participant', $4, gen_random_uuid()::text)
-        `, [userId, email, full_name, teamId]);
+          INSERT INTO public.profiles (id, email, full_name, role, team_id, trainer_id, qr_token)
+          VALUES ($1, $2, $3, 'participant', $4, $5, gen_random_uuid()::text)
+        `, [userId, email, full_name, teamId, trainerId]);
 
         // 5. Update team leader if necessary
         if (teamId && String(is_leader).toLowerCase() === "true") {
@@ -81,6 +84,7 @@ export async function POST(req: NextRequest) {
         }
 
         successCount++;
+        generatedUsers.push({ email, password, trainerId });
 
         // Note: In a real system, you would queue an email to be sent to the user with their password.
         // For now, they are generated and the admin can export them or they are just securely saved.
@@ -96,7 +100,7 @@ export async function POST(req: NextRequest) {
     await client.query("COMMIT");
     await client.end();
 
-    return NextResponse.json({ successCount, errors });
+    return NextResponse.json({ successCount, errors, generatedUsers });
   } catch (error: unknown) {
     console.error("CSV Upload error:", error);
     return NextResponse.json({ error: error instanceof Error ? error.message : "Internal server error" }, { status: 500 });

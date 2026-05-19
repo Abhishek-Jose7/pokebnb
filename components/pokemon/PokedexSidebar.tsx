@@ -20,6 +20,7 @@ const nav = {
     [QrCode, "Check-In", "/admin/checkin"],
     [ClipboardList, "Problem Statements", "/admin/problem-statements"],
     [DoorOpen, "Rooms", "/admin/rooms"],
+    [Users, "Upload CSV", "/admin/upload-csv"],
   ],
   judge: [
     [Home, "Dashboard", "/judge"],
@@ -81,13 +82,19 @@ export function PokedexSidebar({ profile }: { profile: Profile }) {
           </div>
         </div>
       </aside>
-      <nav className="fixed bottom-0 left-0 right-0 z-40 flex gap-1 overflow-x-auto border-t-4 border-poke-black bg-poke-red p-1 lg:hidden">
+      <nav className="fixed bottom-0 left-0 right-0 z-40 flex gap-1 overflow-x-auto border-t-2 border-poke-black bg-poke-red p-1 lg:hidden">
         {items.map(([Icon, label, href]) => (
-          <Link key={href} href={href} className={cn("grid min-h-16 min-w-20 place-items-center rounded px-2 text-center text-[10px] font-bold text-white", pathname === href && "bg-poke-yellow text-slate-950")}>
-            <Icon className="h-5 w-5" />
-            <span className="truncate">{label.split(" ")[0]}</span>
+          <Link key={href} href={href} className={cn("flex min-h-12 min-w-16 flex-col items-center justify-center rounded px-1 text-center text-[9px] font-bold text-white", pathname === href && "bg-poke-yellow text-slate-950")}>
+            <Icon className="mb-0.5 h-4 w-4 shrink-0" />
+            <span className="max-w-[60px] truncate">{label.split(" ")[0]}</span>
           </Link>
         ))}
+        {(profile.role === "admin" || profile.role === "judge") && (
+          <button onClick={logout} className="flex min-h-12 min-w-16 flex-col items-center justify-center rounded px-1 text-center text-[9px] font-bold text-white hover:bg-black/20">
+            <LogOut className="mb-0.5 h-4 w-4 shrink-0" />
+            <span className="max-w-[60px] truncate">Logout</span>
+          </button>
+        )}
       </nav>
     </>
   );
