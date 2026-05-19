@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Countdown } from "@/components/landing/Countdown";
 import { CutscenePreloader } from "@/components/landing/CutscenePreloader";
 import { LandingNavbar } from "@/components/landing/LandingNavbar";
+import { LandingHero } from "@/components/landing/LandingHero";
 import { PokemonCenterFAQ } from "@/components/landing/PokemonCenterFAQ";
 import { RouteTimeline } from "@/components/landing/RouteTimeline";
 
@@ -70,81 +70,51 @@ const prizes = [
 ];
 
 export default function HomePage() {
-  const eventStart = process.env.NEXT_PUBLIC_EVENT_START ?? "2026-09-01T09:00:00+05:30";
-
   return (
     <>
       <CutscenePreloader />
       <LandingNavbar />
       <main className="overflow-hidden text-xl sm:text-2xl">
-        <section className="relative min-h-[92vh] border-b border-white/10 pt-16">
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.035)_1px,transparent_1px)] bg-[size:42px_42px]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_24%,rgba(255,203,5,.20),transparent_28rem),radial-gradient(circle_at_18%_70%,rgba(204,0,0,.28),transparent_24rem),linear-gradient(135deg,#08111b_0%,#102536_54%,#05080d_100%)]" />
-          <div className="relative mx-auto grid min-h-[calc(92vh-4rem)] max-w-7xl items-center gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[1.05fr_.95fr]">
-            <div className="max-w-4xl">
-              <p className="mb-5 font-mono text-xl uppercase tracking-[0.28em] text-poke-yellow">Game starts soon</p>
-              <h1 className="font-display text-7xl leading-tight text-white sm:text-8xl lg:text-9xl">BITNBUILD</h1>
-              <p className="mt-7 max-w-3xl text-2xl leading-10 text-slate-200">
-                A high-energy hackathon where teams enter as trainers, challenges become badges, and every demo is a Gym Battle.
-              </p>
-              <div className="mt-8 max-w-xl"><Countdown targetIso={eventStart} /></div>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a href="https://unstop.com" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-14 items-center rounded-md bg-poke-yellow px-7 text-xl font-black text-slate-950">Register on Unstop</a>
-                <Link href="/login" className="inline-flex min-h-14 items-center rounded-md border border-white/20 bg-white/10 px-7 text-xl font-black text-white backdrop-blur hover:border-poke-yellow">Enter Dashboard</Link>
-              </div>
-            </div>
-            <div className="relative min-h-[360px] lg:min-h-[560px]" aria-hidden="true">
-              <div className="absolute left-4 top-10 h-56 w-56 rounded-full border-[18px] border-poke-black bg-[linear-gradient(to_bottom,#cc0000_0_48%,#2d2d2d_48%_54%,#fff_54%_100%)] shadow-2xl shadow-red-950/40 sm:h-72 sm:w-72" />
-              <div className="absolute left-28 top-24 h-20 w-20 rounded-full border-[14px] border-poke-black bg-white sm:left-40 sm:top-36" />
-              <Image className="absolute bottom-8 left-0 drop-shadow-[0_22px_24px_rgba(0,0,0,.45)]" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="" width={180} height={180} priority />
-              <Image className="absolute right-10 top-4 drop-shadow-[0_22px_24px_rgba(0,0,0,.45)]" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png" alt="" width={190} height={190} priority />
-              <Image className="absolute bottom-0 right-4 drop-shadow-[0_22px_24px_rgba(0,0,0,.45)]" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/9.png" alt="" width={210} height={210} priority />
-              <div className="absolute bottom-4 left-8 right-8 rounded-md border border-white/15 bg-slate-950/50 p-4 backdrop-blur">
-                <p className="font-mono text-lg text-poke-yellow">Next unlock</p>
-                <p className="font-display text-lg leading-8 text-white">Gym Badge Challenges</p>
-              </div>
-            </div>
-          </div>
-        </section>
+      <LandingHero />
 
         <section id="about" className="relative bg-[url('/oakbg.jpg')] bg-cover bg-center px-4 pt-32 pb-40 text-slate-950 sm:px-6">
-          {/* Blend Gradient into next section (#101b27) */}
-          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-[#101b27]" />
+          {/* Blend Gradient into next section */}
+          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-[#0f2318]" />
           
-          <div className="relative z-10 mx-auto grid max-w-[80rem] items-center gap-12 lg:grid-cols-[1.2fr_1fr]">
-            {/* Map Area */}
-            <div className="relative mx-auto w-full max-w-xl overflow-hidden rounded-lg border-[4px] border-poke-black bg-[#e6f0fa]/90 shadow-2xl backdrop-blur order-2 lg:order-1">
+          <div className="relative z-10 mx-auto grid max-w-[80rem] items-start gap-12 lg:grid-cols-[1fr_1.3fr]">
+            {/* Map Area — smaller, shifted right */}
+            <div className="relative ml-auto w-full max-w-sm overflow-hidden rounded-lg border-[4px] border-poke-black bg-[#e6f0fa]/90 shadow-2xl backdrop-blur order-2 lg:order-1">
               <div className="aspect-video relative">
                 <Image
                   src="/images/worldmap.png.png"
                   alt="Global BITNBUILD map"
                   fill
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-contain p-6"
+                  sizes="(min-width: 1024px) 35vw, 90vw"
+                  className="object-contain p-4"
                 />
               </div>
             </div>
 
-            {/* Oak's Dialogue Area */}
+            {/* Oak's Dialogue Area — dialogue on top, Oak bigger and below */}
             <div className="flex flex-col items-center order-1 lg:order-2">
-              <Image src="/oak.png" alt="Professor Oak" width={220} height={380} className="object-contain drop-shadow-xl" />
-              <div className="relative mt-4 w-full rounded-md border-[4px] border-poke-black bg-white p-6 shadow-xl">
+              <div className="relative mb-8 w-full rounded-md border-[4px] border-poke-black bg-white p-6 shadow-xl">
                 <p className="font-mono text-sm font-bold uppercase text-poke-red">PROF. OAK:</p>
                 <div className="mt-3 font-sans text-xl leading-relaxed text-slate-900">
                   <p>Welcome to BitnBuild 2025, a global hackathon in Mumbai!</p>
                   <p className="mt-4">A 24-hour event full of creativity, innovation, and endless possibilities.</p>
                   <p className="mt-4">Are you ready to compete with the best and unlock your potential?</p>
                 </div>
-                {/* Pointer to Oak */}
-                <div className="absolute -top-[14px] left-1/2 -translate-x-1/2 border-b-[14px] border-l-[14px] border-r-[14px] border-b-poke-black border-l-transparent border-r-transparent">
-                  <div className="absolute -left-[10px] top-[4px] border-b-[10px] border-l-[10px] border-r-[10px] border-b-white border-l-transparent border-r-transparent" />
+                {/* Pointer to Oak (below pointing down) */}
+                <div className="absolute -bottom-[14px] left-1/2 -translate-x-1/2 border-t-[14px] border-l-[14px] border-r-[14px] border-t-poke-black border-l-transparent border-r-transparent">
+                  <div className="absolute -left-[10px] bottom-[4px] border-t-[10px] border-l-[10px] border-r-[10px] border-t-white border-l-transparent border-r-transparent" />
                 </div>
               </div>
+              <Image src="/oak.jpg" alt="Professor Oak" width={400} height={600} className="mt-2 object-contain drop-shadow-xl" />
             </div>
           </div>
         </section>
 
-        <section id="domains" className="bg-[#101b27] px-4 py-28 sm:px-6">
+        <section id="domains" className="bg-[#0f2318] px-4 py-28 sm:px-6">
           <div className="mx-auto max-w-7xl">
             <p className="font-mono text-xl uppercase tracking-[0.24em] text-poke-yellow">Domains</p>
             <h2 className="mt-4 font-display text-5xl leading-tight lg:text-6xl">Choose your starter.</h2>
@@ -173,56 +143,74 @@ export default function HomePage() {
         <RouteTimeline />
 
         <section id="prizes" className="bg-[#0e1722] px-4 py-28 sm:px-6">
-          <div className="mx-auto max-w-7xl">
-            <p className="font-mono text-xl uppercase tracking-[0.24em] text-poke-yellow">Prizes</p>
-            <div className="mt-10 grid gap-10 md:grid-cols-3">
-              {prizes.map((prize, index) => (
-                <div key={prize.title} className="group h-[480px] [perspective:1000px]">
+          <div className="mx-auto max-w-5xl">
+            <p className="text-center font-mono text-xl uppercase tracking-[0.24em] text-poke-yellow">Prizes</p>
+            
+            {/* LEGENDARY — centered top, larger, glowing */}
+            <div className="mt-10 flex justify-center">
+              <div className="group h-[540px] w-full max-w-md [perspective:1000px]">
+                <div className="relative h-full w-full rounded-2xl transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                  {/* Front */}
+                  <div className={`absolute inset-0 flex flex-col items-center justify-center rounded-2xl border-[6px] ${prizes[0].borderFront} ${prizes[0].bgFront} [backface-visibility:hidden] shadow-[0_0_60px_rgba(224,184,47,0.35)] overflow-hidden`}>
+                    <div className="relative h-full w-full">
+                      <Image src={prizes[0].imageFront} alt={prizes[0].title} fill className="object-cover" />
+                    </div>
+                  </div>
+                  {/* Back */}
+                  <div className={`absolute inset-0 flex flex-col items-center rounded-2xl border-[6px] ${prizes[0].borderBack} ${prizes[0].bgBack} [backface-visibility:hidden] [transform:rotateY(180deg)] shadow-xl overflow-hidden`}>
+                    <div className="p-8 w-full h-full flex flex-col items-center">
+                      <h3 className={`mt-4 text-center font-display text-5xl leading-tight ${prizes[0].textBack}`}>{prizes[0].title}</h3>
+                      <div className="my-6 h-1 w-16 rounded-full bg-slate-300" />
+                      <ul className="w-full space-y-4 font-mono text-lg font-bold text-slate-800">
+                        {prizes[0].perks.map((perk, i) => (
+                          <li key={i} className="flex items-start">
+                            <span className={`mr-2 mt-1 ${prizes[0].textBack}`}>▶</span>
+                            {perk}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* EPIC + RARE — side by side below */}
+            <div className="mt-10 grid gap-10 sm:grid-cols-2">
+              {prizes.slice(1).map((prize) => (
+                <div key={prize.title} className="group h-[440px] [perspective:1000px]">
                   <div className="relative h-full w-full rounded-2xl transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-                    
-                    {/* Front of Card */}
+                    {/* Front */}
                     <div className={`absolute inset-0 flex flex-col items-center justify-center rounded-2xl border-[6px] ${prize.borderFront} ${prize.bgFront} [backface-visibility:hidden] shadow-[0_0_30px_rgba(0,0,0,0.5)] overflow-hidden`}>
                       {prize.imageFront ? (
                         <div className="relative h-full w-full">
-                          <Image src={prize.imageFront} alt={`${prize.title}`} fill className="object-cover" />
+                          <Image src={prize.imageFront} alt={prize.title} fill className="object-cover" />
                         </div>
                       ) : (
                         <div className="p-6 w-full h-full flex flex-col items-center justify-center">
-                          <div className="absolute top-6 font-mono text-sm font-black tracking-widest text-white/50">0{index + 1}</div>
                           <p className={`font-mono text-2xl font-bold tracking-[0.2em] ${prize.textFront}`}>{prize.tier}</p>
-                          
-                          {/* Card Hologram/Crest */}
                           <div className={`mt-10 h-40 w-40 flex items-center justify-center rounded-full border-4 ${prize.borderFront} ${prize.bgFront} shadow-inner`}>
                             <div className={`h-28 w-28 rounded-full border-2 border-dashed ${prize.borderFront} opacity-50`} />
                           </div>
-                          
                           <p className="mt-10 font-sans text-sm font-bold tracking-widest text-white/40">HOVER TO REVEAL</p>
                         </div>
                       )}
                     </div>
-
-                    {/* Back of Card */}
+                    {/* Back */}
                     <div className={`absolute inset-0 flex flex-col items-center rounded-2xl border-[6px] ${prize.borderBack} ${prize.bgBack} [backface-visibility:hidden] [transform:rotateY(180deg)] shadow-xl overflow-hidden`}>
-                      {prize.imageBack ? (
-                        <div className="relative h-full w-full">
-                          <Image src={prize.imageBack} alt={`${prize.title} details`} fill className="object-cover" />
-                        </div>
-                      ) : (
-                        <div className="p-8 w-full h-full flex flex-col items-center">
-                          <h3 className={`mt-4 text-center font-display text-4xl leading-tight ${prize.textBack}`}>{prize.title}</h3>
-                          <div className={`my-6 h-1 w-16 rounded-full bg-slate-300`} />
-                          <ul className="w-full space-y-4 font-mono text-lg font-bold text-slate-800">
-                            {prize.perks.map((perk, i) => (
-                              <li key={i} className="flex items-start">
-                                <span className={`mr-2 mt-1 ${prize.textBack}`}>▶</span>
-                                {perk}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
+                      <div className="p-8 w-full h-full flex flex-col items-center">
+                        <h3 className={`mt-4 text-center font-display text-4xl leading-tight ${prize.textBack}`}>{prize.title}</h3>
+                        <div className="my-6 h-1 w-16 rounded-full bg-slate-300" />
+                        <ul className="w-full space-y-4 font-mono text-lg font-bold text-slate-800">
+                          {prize.perks.map((perk, i) => (
+                            <li key={i} className="flex items-start">
+                              <span className={`mr-2 mt-1 ${prize.textBack}`}>▶</span>
+                              {perk}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
-
                   </div>
                 </div>
               ))}

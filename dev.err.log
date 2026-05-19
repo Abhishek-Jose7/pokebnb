@@ -31,3 +31,4 @@ Import trace for requested module:
 <w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\pokemon\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\pokemon\.next\cache\webpack\client-development\0.pack.gz'
 <w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\pokemon\.next\cache\webpack\server-development\0.pack.gz_' -> 'C:\pokemon\.next\cache\webpack\server-development\0.pack.gz'
 <w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\pokemon\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\pokemon\.next\cache\webpack\client-development\0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Restoring pack from C:\pokemon\.next\cache\webpack\server-development.pack.gz failed: TypeError: Cannot read properties of undefined (reading 'hasStartTime')
