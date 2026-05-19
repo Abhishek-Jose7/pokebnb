@@ -110,16 +110,16 @@ export default function HackPokedex({
 
         /* ── LEFT PANEL (controls) ── */
         .pdx2-left {
-          width: 300px;
+          width: 380px;
           flex-shrink: 0;
           background: var(--red);
           display: flex;
           flex-direction: column;
           align-items: center;
-          padding: 22px 20px 18px;
+          padding: 28px 24px 22px;
           position: relative;
           border-right: 4px solid var(--red-lo);
-          gap: 16px;
+          gap: 20px;
         }
 
         /* angled bottom-right cut */
@@ -353,7 +353,7 @@ export default function HackPokedex({
           display: flex;
           flex-direction: column;
           overflow: hidden;
-          min-height: 430px;
+          min-height: 520px;
         }
 
         /* scanlines overlay */
