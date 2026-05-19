@@ -33,7 +33,7 @@ export function CutscenePreloader() {
         <div className="flex h-full w-full items-center justify-center bg-black">
           <video
             ref={videoRef}
-            className="h-full w-full scale-[0.86] object-contain"
+            className="h-full w-full scale-[1.1] sm:scale-125 object-contain"
             src="/bitnbuild-cutscene.mp4"
             muted
             playsInline

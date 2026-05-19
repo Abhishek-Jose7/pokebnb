@@ -1,8 +1,6 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { toast } from "sonner";
 import { QRScanner } from "@/components/admin/QRScanner";
 
 export function QRTeamScanner() {

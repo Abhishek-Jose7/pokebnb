@@ -105,10 +105,10 @@ export function PokemonCenterFAQ() {
 
         {/* Mobile View: Stacked NPCs */}
         <div className="mt-8 flex flex-col gap-4 sm:hidden">
-          {npcs.map((person, index) => (
+          {npcs.map((person) => (
             <div key={person.name} className="flex flex-col rounded-md border-[3px] border-poke-black bg-[#f8f5eb] p-4 shadow-lg">
               <div className="flex items-center gap-3">
-                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border-[3px] border-poke-black bg-poke-yellow text-center text-2xl font-black leading-none text-poke-red shadow-[0_3px_0_rgba(0,0,0,.35)]">
+                <div className="grid h-8 w-8 shrink-0 place-items-center rounded-full border-[3px] border-poke-black bg-poke-yellow text-center text-xl font-black leading-none text-poke-red shadow-[0_3px_0_rgba(0,0,0,.35)]">
                   ?
                 </div>
                 <div>
@@ -177,7 +177,7 @@ export function PokemonCenterFAQ() {
                   className="group flex h-16 w-16 cursor-pointer flex-col items-center justify-center transition-transform hover:-translate-y-2 focus:outline-none focus-visible:ring-4 focus-visible:ring-poke-yellow/70 sm:h-20 sm:w-20"
                   aria-label={`Talk to ${person.name}`}
                 >
-                  <div className={`grid h-9 w-9 place-items-center rounded-full border-[3px] border-poke-black bg-poke-yellow pb-1 text-center text-3xl font-black leading-none text-poke-red shadow-[0_5px_0_rgba(0,0,0,.35)] transition group-hover:scale-110 sm:h-11 sm:w-11 sm:text-4xl ${active === index ? "animate-bounce" : ""}`}>
+                  <div className={`grid h-7 w-7 place-items-center rounded-full border-[3px] border-poke-black bg-poke-yellow pb-[1px] text-center text-xl font-black leading-none text-poke-red shadow-[0_4px_0_rgba(0,0,0,.35)] transition group-hover:scale-110 sm:h-9 sm:w-9 sm:text-2xl ${active === index ? "animate-bounce" : ""}`}>
                     ?
                   </div>
                   <span className={`mt-2 max-w-28 rounded bg-white/95 px-2 py-1 text-center font-mono text-[9px] font-black uppercase text-poke-red shadow transition ${active === index ? "opacity-100" : "opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100"}`}>

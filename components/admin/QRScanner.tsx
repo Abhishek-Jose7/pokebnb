@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Html5Qrcode } from "html5-qrcode";
 import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
 
-export function QRScanner({ renderActions }: { renderActions?: (profile: any) => React.ReactNode }) {
+export function QRScanner({ renderActions }: { renderActions?: (profile: Record<string, unknown>) => React.ReactNode }) {
   const [last, setLast] = useState<string>("");
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
   const [profile, setProfile] = useState<{
@@ -74,20 +73,7 @@ export function QRScanner({ renderActions }: { renderActions?: (profile: any) =>
     };
   }, [last]);
 
-  async function mark(type: string) {
-    if (!profile) return;
-    const res = await fetch("/api/admin/checkin-action", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ user_id: profile.id, type }),
-    });
-    const json = await res.json().catch(() => ({}));
-    if (!res.ok) {
-      toast.error("Check-in blocked", { description: json.error ?? "Try again" });
-      return;
-    }
-    toast.success("Logged", { description: `${profile.full_name} - ${type}` });
-  }
+
 
   return (
     <div className="grid gap-4">

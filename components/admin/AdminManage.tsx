@@ -38,7 +38,6 @@ export function AdminManageUsers({
   const router = useRouter();
   const [filter, setFilter] = useState("");
   const [roleFilter, setRoleFilter] = useState("all");
-  const [psFilter, setPsFilter] = useState("all");
   const [specialtyFilter, setSpecialtyFilter] = useState("all");
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editForm, setEditForm] = useState<Partial<ProfileRow>>({});

@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { Providers } from "@/components/Providers";
 import { PokedexSidebar } from "@/components/pokemon/PokedexSidebar";
+import { LandingNavbar } from "@/components/landing/LandingNavbar";
 import { createClient } from "@/lib/supabase/server";
 import type { Profile, Role } from "@/types";
 
@@ -39,8 +40,9 @@ export default async function DashboardLayout({ children }: { children: React.Re
   return (
     <Providers>
     <div>
+      {isParticipant && <LandingNavbar />}
       {!isParticipant ? <PokedexSidebar profile={shellProfile} /> : null}
-      <main className={`min-h-screen px-4 pt-5 ${isParticipant ? "bg-gradient-to-br from-[#0a1628] via-[#0d1e1a] to-[#0f1520] pb-8 lg:px-8" : "pb-28 lg:ml-72 lg:px-8 lg:pb-8"}`}>
+      <main className={`min-h-screen px-4 ${isParticipant ? "pt-24 bg-gradient-to-br from-[#0a1628] via-[#0d1e1a] to-[#0f1520] pb-8 lg:px-8" : "pt-5 pb-28 lg:ml-72 lg:px-8 lg:pb-8"}`}>
         {children}
       </main>
     </div>

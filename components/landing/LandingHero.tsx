@@ -16,6 +16,31 @@ export function LandingHero() {
       </div>
       <div className="absolute inset-0 z-0 bg-gradient-to-t from-black/82 via-black/18 to-black/50" />
 
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes fly {
+          0% { transform: translateX(-20vw) translateY(0) scaleX(-1); }
+          45% { transform: translateX(120vw) translateY(-10vh) scaleX(-1); }
+          50% { transform: translateX(120vw) translateY(-10vh) scaleX(1); }
+          95% { transform: translateX(-20vw) translateY(10vh) scaleX(1); }
+          100% { transform: translateX(-20vw) translateY(0) scaleX(-1); }
+        }
+        .animate-fly {
+          animation: fly 35s linear infinite;
+        }
+      `}} />
+
+      {/* Ho-Oh flying animation */}
+      <div className="absolute top-[10%] left-0 z-20 animate-fly">
+        <Image
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/250.gif"
+          alt="Ho-Oh"
+          width={100}
+          height={100}
+          className="object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] opacity-60 w-24 h-24 sm:w-32 sm:h-32"
+          unoptimized
+        />
+      </div>
+
       {/* Logo — centered vertically in the middle-upper area */}
       <div className="absolute left-1/2 top-[35%] z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-6 w-full px-2">
         <Image
